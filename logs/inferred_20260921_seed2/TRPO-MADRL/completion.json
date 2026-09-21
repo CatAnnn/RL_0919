@@ -1,0 +1,11 @@
+{
+  "run_id": "inferred_20260921_seed2",
+  "seed": 2,
+  "algorithm": "TRPO-MADRL",
+  "iterations": 1500,
+  "agent_transitions": 108000,
+  "actor_updates": 4500,
+  "critic_updates": 18000,
+  "elapsed_this_invocation_seconds": 100.09624549996806,
+  "finished_utc": "2026-09-21T13:33:39.366881+00:00"
+}

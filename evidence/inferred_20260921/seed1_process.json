@@ -1,0 +1,17 @@
+{
+  "pid": 78084,
+  "command": [
+    "F:\\Blackma\\Anaconda\\envs\\pytorch_env\\python.exe",
+    "-X",
+    "utf8",
+    "-u",
+    "train.py",
+    "--config",
+    "configs/inferred_20260921.yaml",
+    "--seed",
+    "1",
+    "--run-id",
+    "inferred_20260921_seed1"
+  ],
+  "started_utc": "2026-09-21T13:28:54.526061+00:00"
+}

@@ -1,0 +1,426 @@
+{
+  "fig05": {
+    "run_id": "inferred_20260921_seed0",
+    "seed": 0,
+    "config_hash": "11ed1195aabfcd298bcaf379e7f064ad8010cd8ca67a057b647baa8bf9ef6e77",
+    "inputs": {
+      "logs\\inferred_20260921_seed0\\F-MADRL\\history.csv": "f22d7984dc7ec44c118f28ea5d535edb28f1fcb5c40d20500d8f1b4dc106d48e"
+    },
+    "data": {
+      "data\\day_ahead_profiles.csv": "aa2f2ac5f1294c5e48f8c027dcdecffc18eb834d51b0c0f89175358be26bd6a0",
+      "data\\mg_parameters.csv": "89afe3032125d45ad348f151cdbea1d853303949e88558a841c7e6af821eb4ca"
+    },
+    "checkpoint": "online training; FedAvg after 500/1000/1500",
+    "source_script_sha256": "e81d208f36043c1f56770fc26e4523fceeb0e054b2c632b4e96154bdfc99aae7",
+    "style": "paper_layout_times_boxed_axes_original_palette",
+    "numeric_status": "actual_new_training_not_reference_digitized",
+    "display": {
+      "training_statistic": "undiscounted_episode_sum",
+      "rolling_window": 25,
+      "smoothing_resets_at_federation_boundaries": true,
+      "faint_curves": "raw_episode_sum",
+      "hour_axis": "time_index=hour-1",
+      "figure9_aggregation": "sum(abs(hourly deficit)); costs summed",
+      "figure9_xaxis": "equally_spaced_checkpoint_labels"
+    },
+    "axes": [
+      {
+        "xlabel": "",
+        "ylabel": "",
+        "xlim": [
+          0.0,
+          1500.0
+        ],
+        "ylim": [
+          -42153.42743940011,
+          -15436.447788979038
+        ]
+      },
+      {
+        "xlabel": "",
+        "ylabel": "",
+        "xlim": [
+          0.0,
+          1500.0
+        ],
+        "ylim": [
+          -23723.896955167278,
+          -3158.1651078887844
+        ]
+      },
+      {
+        "xlabel": "Iteration",
+        "ylabel": "",
+        "xlim": [
+          0.0,
+          1500.0
+        ],
+        "ylim": [
+          -15199.128900564767,
+          -3045.727556197555
+        ]
+      }
+    ]
+  },
+  "fig06": {
+    "run_id": "inferred_20260921_seed0",
+    "seed": 0,
+    "config_hash": "11ed1195aabfcd298bcaf379e7f064ad8010cd8ca67a057b647baa8bf9ef6e77",
+    "inputs": {
+      "logs\\inferred_20260921_seed0\\evaluation\\schedule.csv": "21f6cc9d0e73bf1184f951ec2323dc2daf89ac41c51037d1645446f1b9602d52"
+    },
+    "data": {
+      "data\\day_ahead_profiles.csv": "aa2f2ac5f1294c5e48f8c027dcdecffc18eb834d51b0c0f89175358be26bd6a0",
+      "data\\mg_parameters.csv": "89afe3032125d45ad348f151cdbea1d853303949e88558a841c7e6af821eb4ca"
+    },
+    "checkpoint": {
+      "iteration": 1500,
+      "path": "checkpoints\\inferred_20260921_seed0\\F-MADRL\\iter_1500_pre_fed.pt",
+      "sha256": "da6d509ce9b1ab973ae4a8e7710ddc1e233ea53728e643e80be14e75e70f672a"
+    },
+    "source_script_sha256": "e81d208f36043c1f56770fc26e4523fceeb0e054b2c632b4e96154bdfc99aae7",
+    "style": "paper_layout_times_boxed_axes_original_palette",
+    "numeric_status": "actual_new_training_not_reference_digitized",
+    "display": {
+      "training_statistic": "undiscounted_episode_sum",
+      "rolling_window": 25,
+      "smoothing_resets_at_federation_boundaries": true,
+      "faint_curves": "raw_episode_sum",
+      "hour_axis": "time_index=hour-1",
+      "figure9_aggregation": "sum(abs(hourly deficit)); costs summed",
+      "figure9_xaxis": "equally_spaced_checkpoint_labels"
+    },
+    "axes": [
+      {
+        "xlabel": "",
+        "ylabel": "$P_{\\mathrm{CG}}$ (kW)",
+        "xlim": [
+          -1.15,
+          24.15
+        ],
+        "ylim": [
+          189.92112597097437,
+          214.32112597097438
+        ]
+      },
+      {
+        "xlabel": "Time (h)",
+        "ylabel": "Unbalanced demand (kW)",
+        "xlim": [
+          -1.15,
+          24.15
+        ],
+        "ylim": [
+          -362.4257003054312,
+          67.1158704269317
+        ]
+      },
+      {
+        "xlabel": "",
+        "ylabel": "$P_{\\mathrm{BA}}$ (kW)",
+        "xlim": [
+          -1.15,
+          24.15
+        ],
+        "ylim": [
+          -1.7489401837387155,
+          44.627561716229444
+        ]
+      }
+    ]
+  },
+  "fig07": {
+    "run_id": "inferred_20260921_seed0",
+    "seed": 0,
+    "config_hash": "11ed1195aabfcd298bcaf379e7f064ad8010cd8ca67a057b647baa8bf9ef6e77",
+    "inputs": {
+      "logs\\inferred_20260921_seed0\\evaluation\\schedule.csv": "21f6cc9d0e73bf1184f951ec2323dc2daf89ac41c51037d1645446f1b9602d52"
+    },
+    "data": {
+      "data\\day_ahead_profiles.csv": "aa2f2ac5f1294c5e48f8c027dcdecffc18eb834d51b0c0f89175358be26bd6a0",
+      "data\\mg_parameters.csv": "89afe3032125d45ad348f151cdbea1d853303949e88558a841c7e6af821eb4ca"
+    },
+    "checkpoint": {
+      "iteration": 1500,
+      "path": "checkpoints\\inferred_20260921_seed0\\F-MADRL\\iter_1500_pre_fed.pt",
+      "sha256": "da6d509ce9b1ab973ae4a8e7710ddc1e233ea53728e643e80be14e75e70f672a"
+    },
+    "source_script_sha256": "e81d208f36043c1f56770fc26e4523fceeb0e054b2c632b4e96154bdfc99aae7",
+    "style": "paper_layout_times_boxed_axes_original_palette",
+    "numeric_status": "actual_new_training_not_reference_digitized",
+    "display": {
+      "training_statistic": "undiscounted_episode_sum",
+      "rolling_window": 25,
+      "smoothing_resets_at_federation_boundaries": true,
+      "faint_curves": "raw_episode_sum",
+      "hour_axis": "time_index=hour-1",
+      "figure9_aggregation": "sum(abs(hourly deficit)); costs summed",
+      "figure9_xaxis": "equally_spaced_checkpoint_labels"
+    },
+    "axes": [
+      {
+        "xlabel": "",
+        "ylabel": "$P_{\\mathrm{CG}}$ (kW)",
+        "xlim": [
+          -1.15,
+          24.15
+        ],
+        "ylim": [
+          58.2301532788698,
+          115.34090272975521
+        ]
+      },
+      {
+        "xlabel": "Time (h)",
+        "ylabel": "Unbalanced demand (kW)",
+        "xlim": [
+          -1.15,
+          24.15
+        ],
+        "ylim": [
+          -54.31104252248403,
+          36.34172084668359
+        ]
+      },
+      {
+        "xlabel": "",
+        "ylabel": "$P_{\\mathrm{BA}}$ (kW)",
+        "xlim": [
+          -1.15,
+          24.15
+        ],
+        "ylim": [
+          -1.1994527398126476,
+          30.42880616517985
+        ]
+      }
+    ]
+  },
+  "fig08": {
+    "run_id": "inferred_20260921_seed0",
+    "seed": 0,
+    "config_hash": "11ed1195aabfcd298bcaf379e7f064ad8010cd8ca67a057b647baa8bf9ef6e77",
+    "inputs": {
+      "logs\\inferred_20260921_seed0\\evaluation\\schedule.csv": "21f6cc9d0e73bf1184f951ec2323dc2daf89ac41c51037d1645446f1b9602d52"
+    },
+    "data": {
+      "data\\day_ahead_profiles.csv": "aa2f2ac5f1294c5e48f8c027dcdecffc18eb834d51b0c0f89175358be26bd6a0",
+      "data\\mg_parameters.csv": "89afe3032125d45ad348f151cdbea1d853303949e88558a841c7e6af821eb4ca"
+    },
+    "checkpoint": {
+      "iteration": 1500,
+      "path": "checkpoints\\inferred_20260921_seed0\\F-MADRL\\iter_1500_pre_fed.pt",
+      "sha256": "da6d509ce9b1ab973ae4a8e7710ddc1e233ea53728e643e80be14e75e70f672a"
+    },
+    "source_script_sha256": "e81d208f36043c1f56770fc26e4523fceeb0e054b2c632b4e96154bdfc99aae7",
+    "style": "paper_layout_times_boxed_axes_original_palette",
+    "numeric_status": "actual_new_training_not_reference_digitized",
+    "display": {
+      "training_statistic": "undiscounted_episode_sum",
+      "rolling_window": 25,
+      "smoothing_resets_at_federation_boundaries": true,
+      "faint_curves": "raw_episode_sum",
+      "hour_axis": "time_index=hour-1",
+      "figure9_aggregation": "sum(abs(hourly deficit)); costs summed",
+      "figure9_xaxis": "equally_spaced_checkpoint_labels"
+    },
+    "axes": [
+      {
+        "xlabel": "",
+        "ylabel": "$P_{\\mathrm{CG}}$ (kW)",
+        "xlim": [
+          -1.15,
+          24.15
+        ],
+        "ylim": [
+          113.33060976592523,
+          152.75246680274455
+        ]
+      },
+      {
+        "xlabel": "Time (h)",
+        "ylabel": "Unbalanced demand (kW)",
+        "xlim": [
+          -1.15,
+          24.15
+        ],
+        "ylim": [
+          -35.456588529708746,
+          73.85238896604972
+        ]
+      },
+      {
+        "xlabel": "",
+        "ylabel": "$P_{\\mathrm{BA}}$ (kW)",
+        "xlim": [
+          -1.15,
+          24.15
+        ],
+        "ylim": [
+          -0.967465798729176,
+          24.43426360758295
+        ]
+      }
+    ]
+  },
+  "fig09": {
+    "run_id": "inferred_20260921_seed0",
+    "seed": 0,
+    "config_hash": "11ed1195aabfcd298bcaf379e7f064ad8010cd8ca67a057b647baa8bf9ef6e77",
+    "inputs": {
+      "logs\\inferred_20260921_seed0\\evaluation\\checkpoint_metrics.csv": "e3208ce36b918e43c05da424d9dc91ed1cc556438e3a273964c9e9eaf7a97fa3"
+    },
+    "data": {
+      "data\\day_ahead_profiles.csv": "aa2f2ac5f1294c5e48f8c027dcdecffc18eb834d51b0c0f89175358be26bd6a0",
+      "data\\mg_parameters.csv": "89afe3032125d45ad348f151cdbea1d853303949e88558a841c7e6af821eb4ca"
+    },
+    "checkpoint": [
+      {
+        "iteration": 1,
+        "path": "checkpoints\\inferred_20260921_seed0\\F-MADRL\\iter_0001_pre_fed.pt",
+        "sha256": "6c9e7c668494fd61972e9c1af6d41e4bcf15cf11239da8dcc9a6156943865629"
+      },
+      {
+        "iteration": 50,
+        "path": "checkpoints\\inferred_20260921_seed0\\F-MADRL\\iter_0050_pre_fed.pt",
+        "sha256": "0557caedb3158d516a205b4bf8170014a6941d827e0ecbc4b14348f32a95cfd9"
+      },
+      {
+        "iteration": 500,
+        "path": "checkpoints\\inferred_20260921_seed0\\F-MADRL\\iter_0500_pre_fed.pt",
+        "sha256": "9346fb421668f230f9705a3959ac68ef108cce458a78939ddaeba14625b7f158"
+      },
+      {
+        "iteration": 700,
+        "path": "checkpoints\\inferred_20260921_seed0\\F-MADRL\\iter_0700_pre_fed.pt",
+        "sha256": "bf7da0be2178c37c19a1593fbf008660feb7252a95a675bf0e7d27ce8365aa38"
+      },
+      {
+        "iteration": 900,
+        "path": "checkpoints\\inferred_20260921_seed0\\F-MADRL\\iter_0900_pre_fed.pt",
+        "sha256": "d949766afc54b9f93e303515ed413c6a154af62d811dc81b2669e1c341cf24ce"
+      },
+      {
+        "iteration": 1400,
+        "path": "checkpoints\\inferred_20260921_seed0\\F-MADRL\\iter_1400_pre_fed.pt",
+        "sha256": "6972d5e06b609f14fb2553c5e0e7082d3d212aa2efd14a5b87baa5592ae89293"
+      }
+    ],
+    "source_script_sha256": "e81d208f36043c1f56770fc26e4523fceeb0e054b2c632b4e96154bdfc99aae7",
+    "style": "paper_layout_times_boxed_axes_original_palette",
+    "numeric_status": "actual_new_training_not_reference_digitized",
+    "display": {
+      "training_statistic": "undiscounted_episode_sum",
+      "rolling_window": 25,
+      "smoothing_resets_at_federation_boundaries": true,
+      "faint_curves": "raw_episode_sum",
+      "hour_axis": "time_index=hour-1",
+      "figure9_aggregation": "sum(abs(hourly deficit)); costs summed",
+      "figure9_xaxis": "equally_spaced_checkpoint_labels"
+    },
+    "axes": [
+      {
+        "xlabel": "",
+        "ylabel": "Unbalanced demand\n(kW)",
+        "xlim": [
+          -0.45,
+          5.45
+        ],
+        "ylim": [
+          -240.58514887876004,
+          7234.822692172895
+        ]
+      },
+      {
+        "xlabel": "",
+        "ylabel": "Cost of CG ($)",
+        "xlim": [
+          -0.45,
+          5.45
+        ],
+        "ylim": [
+          14159.093937440779,
+          39772.401119073314
+        ]
+      },
+      {
+        "xlabel": "Iteration",
+        "ylabel": "Cost of BA ($)",
+        "xlim": [
+          -0.45,
+          5.45
+        ],
+        "ylim": [
+          -470.95851372120615,
+          29595.584887836914
+        ]
+      }
+    ]
+  },
+  "fig10": {
+    "run_id": "inferred_20260921_seed0",
+    "seed": 0,
+    "config_hash": "11ed1195aabfcd298bcaf379e7f064ad8010cd8ca67a057b647baa8bf9ef6e77",
+    "inputs": {
+      "logs\\inferred_20260921_seed0\\F-MADRL\\history.csv": "f22d7984dc7ec44c118f28ea5d535edb28f1fcb5c40d20500d8f1b4dc106d48e",
+      "logs\\inferred_20260921_seed0\\PPO-MADRL\\history.csv": "076601093621d9bfb5319c70ced37331e7dd9d1c31c0ee1cc163dd630d313af6",
+      "logs\\inferred_20260921_seed0\\A2C-MADRL\\history.csv": "419a7e7ec863855f20a51a562e2344aaf2929de39fe0f376cd53f3d442ec91b7",
+      "logs\\inferred_20260921_seed0\\TRPO-MADRL\\history.csv": "664bad4c45813c9ac723f32415ae2161f41bc545efa04f3abea1b83ff1f52f2e"
+    },
+    "data": {
+      "data\\day_ahead_profiles.csv": "aa2f2ac5f1294c5e48f8c027dcdecffc18eb834d51b0c0f89175358be26bd6a0",
+      "data\\mg_parameters.csv": "89afe3032125d45ad348f151cdbea1d853303949e88558a841c7e6af821eb4ca"
+    },
+    "checkpoint": "online training, all algorithms 1500 iterations",
+    "source_script_sha256": "e81d208f36043c1f56770fc26e4523fceeb0e054b2c632b4e96154bdfc99aae7",
+    "style": "paper_layout_times_boxed_axes_original_palette",
+    "numeric_status": "actual_new_training_not_reference_digitized",
+    "display": {
+      "training_statistic": "undiscounted_episode_sum",
+      "rolling_window": 25,
+      "smoothing_resets_at_federation_boundaries": true,
+      "faint_curves": "raw_episode_sum",
+      "hour_axis": "time_index=hour-1",
+      "figure9_aggregation": "sum(abs(hourly deficit)); costs summed",
+      "figure9_xaxis": "equally_spaced_checkpoint_labels"
+    },
+    "axes": [
+      {
+        "xlabel": "",
+        "ylabel": "",
+        "xlim": [
+          0.0,
+          1500.0
+        ],
+        "ylim": [
+          -45332.16147355472,
+          -14358.809609762662
+        ]
+      },
+      {
+        "xlabel": "",
+        "ylabel": "",
+        "xlim": [
+          0.0,
+          1500.0
+        ],
+        "ylim": [
+          -19160.1941320536,
+          -973.5264904717574
+        ]
+      },
+      {
+        "xlabel": "Iterations",
+        "ylabel": "",
+        "xlim": [
+          0.0,
+          1500.0
+        ],
+        "ylim": [
+          -14578.080084142832,
+          -759.1978612970504
+        ]
+      }
+    ]
+  }
+}

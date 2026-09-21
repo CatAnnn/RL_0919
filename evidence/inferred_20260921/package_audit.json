@@ -1,0 +1,37 @@
+{
+  "checked_artifact_hashes": 497,
+  "hash_mismatches": [],
+  "broken_links": [],
+  "combined_pdf_pages": 6,
+  "fonts_by_figure": {
+    "5": [
+      "BYJABP+TimesNewRomanPS-BoldMT",
+      "BYJABP+TimesNewRomanPSMT"
+    ],
+    "6": [
+      "BYJABP+TimesNewRomanPSMT",
+      "CZRBLR+STIXGeneral-Regular",
+      "FTXWZA+STIXGeneral-Italic"
+    ],
+    "7": [
+      "BYJABP+TimesNewRomanPSMT",
+      "CZRBLR+STIXGeneral-Regular",
+      "FTXWZA+STIXGeneral-Italic"
+    ],
+    "8": [
+      "BYJABP+TimesNewRomanPSMT",
+      "CZRBLR+STIXGeneral-Regular",
+      "FTXWZA+STIXGeneral-Italic"
+    ],
+    "9": [
+      "BYJABP+TimesNewRomanPSMT"
+    ],
+    "10": [
+      "BYJABP+TimesNewRomanPSMT",
+      "CZRBLR+STIXGeneral-Regular"
+    ]
+  },
+  "utf8_passed": true,
+  "python_compile_passed": true,
+  "pdf_visual_contact": "evidence\\inferred_20260921\\visual\\pdf_contact.png"
+}

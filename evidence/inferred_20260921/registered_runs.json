@@ -1,0 +1,32 @@
+[
+  {
+    "seed": 0,
+    "exit_code": 0,
+    "run_id": "inferred_20260921_seed0",
+    "log": "evidence\\inferred_20260921\\seed0.log"
+  },
+  {
+    "seed": 1,
+    "exit_code": 0,
+    "run_id": "inferred_20260921_seed1",
+    "log": "evidence\\inferred_20260921\\seed1.log"
+  },
+  {
+    "seed": 2,
+    "exit_code": 0,
+    "run_id": "inferred_20260921_seed2",
+    "log": "evidence\\inferred_20260921\\seed2.log"
+  },
+  {
+    "seed": 3,
+    "exit_code": 0,
+    "run_id": "inferred_20260921_seed3",
+    "log": "evidence\\inferred_20260921\\seed3.log"
+  },
+  {
+    "seed": 4,
+    "exit_code": 0,
+    "run_id": "inferred_20260921_seed4",
+    "log": "evidence\\inferred_20260921\\seed4.log"
+  }
+]

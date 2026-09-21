@@ -1,0 +1,48 @@
+{
+  "run_id": "inferred_20260921_seed1",
+  "seed": 1,
+  "config_hash": "11ed1195aabfcd298bcaf379e7f064ad8010cd8ca67a057b647baa8bf9ef6e77",
+  "scenario": "deterministic",
+  "evaluation_action": "tanh(latent mean)",
+  "checkpoints": [
+    {
+      "iteration": 1,
+      "path": "checkpoints\\inferred_20260921_seed1\\F-MADRL\\iter_0001_pre_fed.pt",
+      "sha256": "4aa5edb1014180bdc8cad38f1fdd8224f2b55abb1991a43f23bc4db92d782625"
+    },
+    {
+      "iteration": 50,
+      "path": "checkpoints\\inferred_20260921_seed1\\F-MADRL\\iter_0050_pre_fed.pt",
+      "sha256": "e782059b26bc54976a14aee313834ed990c342294490366d0fee99628b64e09a"
+    },
+    {
+      "iteration": 500,
+      "path": "checkpoints\\inferred_20260921_seed1\\F-MADRL\\iter_0500_pre_fed.pt",
+      "sha256": "9ae7d2df3cf996cd11d3dca91e9c81058e32a0837b235c1e04a25ed6fb24e437"
+    },
+    {
+      "iteration": 700,
+      "path": "checkpoints\\inferred_20260921_seed1\\F-MADRL\\iter_0700_pre_fed.pt",
+      "sha256": "f7fcb444300a80a9231c82af96e40ea4d55dff91e8628e229350f056269cad2b"
+    },
+    {
+      "iteration": 900,
+      "path": "checkpoints\\inferred_20260921_seed1\\F-MADRL\\iter_0900_pre_fed.pt",
+      "sha256": "5d468afa2c05fa969bff6ecc6e69aa023528115aa89477c3ebdd6722d52c5bd2"
+    },
+    {
+      "iteration": 1400,
+      "path": "checkpoints\\inferred_20260921_seed1\\F-MADRL\\iter_1400_pre_fed.pt",
+      "sha256": "2a1800224e23d59f67779bee9dd1059a99ff06857a46ef187222cf3205d614c3"
+    },
+    {
+      "iteration": 1500,
+      "path": "checkpoints\\inferred_20260921_seed1\\F-MADRL\\iter_1500_pre_fed.pt",
+      "sha256": "90b130ce724bf41b6b32ce725412fb088369580335f697bd23e50b1a9071cace"
+    }
+  ],
+  "data": {
+    "data\\day_ahead_profiles.csv": "aa2f2ac5f1294c5e48f8c027dcdecffc18eb834d51b0c0f89175358be26bd6a0",
+    "data\\mg_parameters.csv": "89afe3032125d45ad348f151cdbea1d853303949e88558a841c7e6af821eb4ca"
+  }
+}

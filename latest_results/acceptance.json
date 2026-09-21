@@ -1,0 +1,9 @@
+{
+  "strict_paper_reproduction": false,
+  "reason": "反推仅确定候选范围；作者网络、采样和统计口径未公开，不能认证同一配置。",
+  "fig05_all_six_points_within5percent": false,
+  "fig09_mg1_1400_within10percent_of3000": true,
+  "training_win_count": 2,
+  "evaluation_win_count": 1,
+  "seed_mg_comparisons": 15
+}

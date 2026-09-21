@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "checks": {
+    "unit_tests": true,
+    "F-MADRL_complete_finite": true,
+    "F-MADRL_real_updates": true,
+    "F-MADRL_new_reward_identity": true,
+    "PPO-MADRL_complete_finite": true,
+    "PPO-MADRL_real_updates": true,
+    "PPO-MADRL_new_reward_identity": true,
+    "A2C-MADRL_complete_finite": true,
+    "A2C-MADRL_real_updates": true,
+    "A2C-MADRL_new_reward_identity": true,
+    "TRPO-MADRL_complete_finite": true,
+    "TRPO-MADRL_real_updates": true,
+    "TRPO-MADRL_new_reward_identity": true,
+    "new_config_soc_balance": true,
+    "new_config_hourly_reward": true,
+    "boundary_resume_history_exact": true,
+    "boundary_resume_parameters_exact": true,
+    "fedavg_2_exact": true,
+    "fedavg_4_exact": true,
+    "fedavg_6_exact": true
+  },
+  "config_hash": "11ed1195aabfcd298bcaf379e7f064ad8010cd8ca67a057b647baa8bf9ef6e77",
+  "unit_tests_run": 13
+}

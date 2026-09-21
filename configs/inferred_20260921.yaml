@@ -1,0 +1,42 @@
+training_iterations: 1500
+federation_interval: 500
+gamma: 0.99
+gae_lambda: 0.95
+actor_learning_rate: 0.0001
+critic_learning_rate: 0.001
+optimizer: Adam
+delta: 0.002
+loss_coefficient: 0.02
+dt_hours: 1.0
+# 本轮按用户要求采用反推报告的候选值；并非作者公开配置。
+battery_capacity_kwh: 100.0
+initial_soc: 0.5
+soc_min: 0.1
+soc_max: 0.9
+eta_charge: 0.95
+eta_discharge: 0.95
+w_cost: 0.02
+w_deviation: 0.45
+# 网络和PPO内循环无法唯一反推，保留已验证实现的工程假设。
+hidden_sizes: [64, 64]
+initial_log_std: -0.5
+ppo_clip: 0.2
+ppo_epochs: 4
+critic_epochs: 4
+max_grad_norm: 0.5
+value_output_scale: 1000.0
+trpo_max_kl: 0.01
+trpo_damping: 0.1
+trpo_cg_iterations: 10
+trpo_line_search_steps: 10
+scenario: deterministic
+seeds: [0, 1, 2, 3, 4]
+main_seed: 0
+evaluation_seed: 20260920
+smoothing_window: 25
+checkpoint_iterations: [1, 50, 500, 700, 900, 1000, 1400, 1500]
+main_checkpoint_stage: pre_fed
+threads: 1
+device: cpu
+experiment_basis: user_authorized_inverse_parameter_candidate
+assumption_document: evidence/inferred_20260921/registration.md

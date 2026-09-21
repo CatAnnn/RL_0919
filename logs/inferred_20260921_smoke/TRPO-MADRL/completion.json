@@ -1,0 +1,11 @@
+{
+  "run_id": "inferred_20260921_smoke",
+  "seed": 0,
+  "algorithm": "TRPO-MADRL",
+  "iterations": 8,
+  "agent_transitions": 576,
+  "actor_updates": 24,
+  "critic_updates": 96,
+  "elapsed_this_invocation_seconds": 0.5276874999981374,
+  "finished_utc": "2026-09-21T13:28:28.697748+00:00"
+}

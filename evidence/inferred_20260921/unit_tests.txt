@@ -1,0 +1,18 @@
+test_all_algorithms_real_updates_and_trpo_kl (test_core.AlgorithmTests) ... ok
+test_cg_linear_system (test_core.AlgorithmTests) ... ok
+test_fedavg_exact_and_optimizer_retention (test_core.AlgorithmTests) ... ok
+test_gae_terminal_mask (test_core.AlgorithmTests) ... ok
+test_old_policy_and_joint_log_prob (test_core.AlgorithmTests) ... ok
+test_charge_discharge_sign (test_core.PhysicsTests) ... ok
+test_gaussian_reproducible (test_core.PhysicsTests) ... ok
+test_observation_is_lagged (test_core.PhysicsTests) ... ok
+test_random_physical_invariants (test_core.PhysicsTests) ... ok
+test_self_discharge_at_lower_bound_requires_charge (test_core.PhysicsTests) ... ok
+test_seller_priority_and_limits (test_core.PhysicsTests) ... ok
+test_strict_unknowns_rejected (test_core.PhysicsTests) ... ok
+test_tables (test_core.PhysicsTests) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 2.333s
+
+OK

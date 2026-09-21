@@ -1,0 +1,19 @@
+{
+  "png_figures_reviewed": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "pdf_contact_reviewed": true,
+  "layout_fixes": [
+    "annotation area outside training curves",
+    "minimum CG axis span for near-constant power",
+    "figure9 label wrapping",
+    "bar panel label clearance"
+  ],
+  "status": "passed",
+  "scope": "visual layout only; numerical acceptance is recorded separately"
+}

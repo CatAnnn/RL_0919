@@ -1,0 +1,29 @@
+{
+  "main_run_id": "inferred_20260921_seed0",
+  "run_ids": [
+    "inferred_20260921_seed0",
+    "inferred_20260921_seed1",
+    "inferred_20260921_seed2",
+    "inferred_20260921_seed3",
+    "inferred_20260921_seed4"
+  ],
+  "config": "configs/inferred_20260921.yaml",
+  "config_hash": "11ed1195aabfcd298bcaf379e7f064ad8010cd8ca67a057b647baa8bf9ef6e77",
+  "figures": "figures/inferred_20260921_seed0",
+  "logs": [
+    "logs/inferred_20260921_seed0",
+    "logs/inferred_20260921_seed1",
+    "logs/inferred_20260921_seed2",
+    "logs/inferred_20260921_seed3",
+    "logs/inferred_20260921_seed4"
+  ],
+  "checkpoints": [
+    "checkpoints/inferred_20260921_seed0",
+    "checkpoints/inferred_20260921_seed1",
+    "checkpoints/inferred_20260921_seed2",
+    "checkpoints/inferred_20260921_seed3",
+    "checkpoints/inferred_20260921_seed4"
+  ],
+  "engineering_audit_passed": true,
+  "strict_paper_reproduction": false
+}
