@@ -1,0 +1,17 @@
+# 严格配置仅包含原文确定值，缺失项必须在运行前报错。
+training_iterations: 1500
+federation_interval: 500
+gamma: 0.99
+gae_lambda: 0.95
+actor_learning_rate: 0.0001
+critic_learning_rate: 0.001
+battery_capacity_kwh: null
+initial_soc: null
+soc_min: null
+soc_max: null
+eta_charge: null
+eta_discharge: null
+w_cost: null
+w_deviation: null
+hidden_sizes: null
+ppo_clip: null

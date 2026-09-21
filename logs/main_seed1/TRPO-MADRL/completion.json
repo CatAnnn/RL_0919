@@ -1,0 +1,11 @@
+{
+  "run_id": "main_seed1",
+  "seed": 1,
+  "algorithm": "TRPO-MADRL",
+  "iterations": 1500,
+  "agent_transitions": 108000,
+  "actor_updates": 4500,
+  "critic_updates": 18000,
+  "elapsed_this_invocation_seconds": 93.39005740001448,
+  "finished_utc": "2026-09-20T15:51:21.183950+00:00"
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "sign": 1,
+    "eta": 0.95,
+    "capacity_necessary_lower_bound": 26.05242063073516,
+    "maximum_cost_difference_with_common_capacity_and_initial_soc": 10034.772871402074,
+    "fig09_1400_cost_difference": 19625.0,
+    "reading_error_difference": 1000,
+    "common_parameters_same_schedule_hypothesis_excluded": true
+  },
+  {
+    "sign": -1,
+    "eta": 0.95,
+    "capacity_necessary_lower_bound": 23.51230961923848,
+    "maximum_cost_difference_with_common_capacity_and_initial_soc": 10557.682670253665,
+    "fig09_1400_cost_difference": 19625.0,
+    "reading_error_difference": 1000,
+    "common_parameters_same_schedule_hypothesis_excluded": true
+  }
+]

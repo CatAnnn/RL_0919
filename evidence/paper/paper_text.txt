@@ -1,0 +1,1791 @@
+=== PAGE 1 ===
+5902
+IEEE TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS, VOL. 35, NO. 5, MAY 2024
+Federated Multiagent Deep Reinforcement Learning
+Approach via Physics-Informed Reward for
+Multimicrogrid Energy Management
+Yuanzheng Li
+, Member, IEEE, Shangyang He, Yang Li
+, Senior Member, IEEE,
+Yang Shi
+, Fellow, IEEE, and Zhigang Zeng
+, Fellow, IEEE
+Abstract—The utilization of large-scale distributed renewable
+energy (RE) promotes the development of the multimicrogrid
+(MMG), which raises the need of developing an effective energy
+management method to minimize economic costs and keep self
+energy sufﬁciency. The multiagent deep reinforcement learning
+(MADRL) has been widely used for the energy management
+problem because of its real-time scheduling ability. However,
+its training requires massive energy operation data of micro-
+grids (MGs), while gathering these data from different MGs
+would threaten their privacy and data security. Therefore, this
+article tackles this practical yet challenging issue by proposing
+a federated MADRL (F-MADRL) algorithm via the physics-
+informed reward. In this algorithm, the federated learning (FL)
+mechanism is introduced to train the F-MADRL algorithm,
+thus ensures the privacy and the security of data. In addition,
+a decentralized MMG model is built, and the energy of each
+participated MG is managed by an agent, which aims to minimize
+economic costs and keep self energy sufﬁciency according to the
+physics-informed reward. At ﬁrst, MGs individually execute the
+self-training based on local energy operation data to train their
+local agent models. Then, these local models are periodically
+uploaded to a server and their parameters are aggregated to
+build a global agent, which will be broadcasted to MGs and
+replace their local agents. In this way, the experience of each
+MG agent can be shared and the energy operation data are not
+explicitly transmitted, thus protecting the privacy and ensuring
+data security. Finally, experiments are conducted on Oak Ridge
+National Laboratory distributed energy control communication
+Manuscript
+received
+16
+August
+2022;
+revised
+27
+October
+2022;
+accepted 23 December 2022. Date of publication 3 January 2023; date of
+current version 3 May 2024. This work was supported in part by the National
+Natural Science Foundation of China under Grant 62233006 and 62073148,
+in part by the Key Scientiﬁc and Technological Research Project of State
+Grid Corporation of China under Grant 1400-202099523A-0-0-00, in part
+by the Technology Innovation Project of Hubei Province of China under
+Grant 2019AEA171, and in part by the 111 Project on Computational Intel-
+ligence and Intelligent Control under Grant B18024. (Corresponding author:
+Yang Li.)
+Yuanzheng Li and Zhigang Zeng are with the Key Laboratory on Image
+Information Processing and Intelligent Control of Ministry of Education,
+School of Artiﬁcial Intelligence and Automation, Huazhong University of
+Science and Technology, Wuhan 430074, China, and also with the China-Belt
+and Road Joint Laboratory on Measurement and Control Technology, Wuhan
+430074, China (e-mail: Yuanzheng_Li@hust.edu.cn; zgzeng@hust.edu.cn).
+Shangyang He is with the China-EU Institute for Clean and Renewable
+Energy, Huazhong University of Science and Technology, Wuhan 430074,
+China (e-mail: heshangyang10@hust.edu.cn).
+Yang Li is with the School of Electrical Engineering, Northeast Electric
+Power University, Jilin 132012, China (e-mail: liyang@neepu.edu.cn).
+Yang Shi is with the Department of Mechanical Engineering, University of
+Victoria, Victoria, BC V8P 5C2, Canada (e-mail: yshi@uvic.ca).
+Digital Object Identiﬁer 10.1109/TNNLS.2022.3232630
+laboratory MG (ORNL-MG) test system, and the comparisons
+are carried out to verify the effectiveness of introducing the FL
+mechanism and the outperformance of our proposed F-MADRL.
+Index Terms—Federated learning (FL), multiagent deep rein-
+forcement learning (MADRL), multimicrogrid (MMG), proximal
+policy optimization (PPO).
+I. INTRODUCTION
+I
+N RECENT years, renewable energy (RE) has been widely
+deployed, such as wind power and photovoltaic. Unlike
+traditional power plants, RE resources are usually distributed.
+Therefore, microgrids (MGs) have been paid much attention
+to use the RE. Note that the MG usually works in a local area
+and provides the required electricity for a small entity, such
+as a school, a hospital, or a community [1], [2], [3], [4].
+Normally, the main target of MG is to achieve the
+self-sufﬁciency of energy via the utilization of RE. However,
+due to its limited capacity, the MG has to take the risk of
+power shortage. Speciﬁcally, since the user demand and RE
+are dependent on the user behavior and weather condition,
+the power demand may exceed the capacity of MG while
+RE generation may be insufﬁcient, thus causing the power
+shortage [5]. For this reason, numerous adjacent MGs are
+interconnected to form a multi-MG (MMG) system. Compared
+with an isolated MG, the MMG system is more capable of
+using RE because of its larger capacity. Besides, although
+these MGs belong to different entities, the energy is allowed
+to be traded among different MGs, i.e., each MG can actively
+sell its surplus power when its power generation exceeds
+the demand, or purchase power from other MGs when the
+generation is insufﬁcient [6]. Therefore, the MMG is more
+promising to achieve energy self-sufﬁciency compared with
+an isolated MG.
+However, because of the complexity of energy management
+of the MMG, it is essential to adopt an effective scheme. The
+present studies of MMG energy management can be mainly
+categorized into two types, i.e., the centralized and decen-
+tralized schemes. The former one is based on a centralized
+energy management center, which could get access to the
+related energy information of all MGs in the MMG system [7],
+[8]. Then, this center can well make decisions to achieve the
+energy self-sufﬁciency of the MMG system. However, note
+that the multiple MGs usually belong to different entities, and
+2162-237X © 2023 IEEE. Personal use is permitted, but republication/redistribution requires IEEE permission.
+See https://www.ieee.org/publications/rights/index.html for more information.
+Authorized licensed use limited to: Donghua University. Downloaded on July 04,2026 at 06:46:03 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 2 ===
+LI et al.: FEDERATED MADRL APPROACH VIA PHYSICS-INFORMED REWARD
+5903
+it is difﬁcult for the centralized management center to acquire
+operation data of all MGs due to the increasing awareness of
+privacy protection.
+Therefore, a more popular research direction is the decen-
+tralized MMG management scheme. For instance, Ng and
+El-Shatshat [9] have proposed the concept of MMG con-
+trol, which uses the multiagent approach to achieve the
+decentralized control of each MG. In addition, Yang et al.
+[10] have adopted multiple self-decision agents replacing the
+energy management center for the energy self-sufﬁciency of
+participated MGs. Liu et al. [11] have treated the MMG
+system as a fully distributed optimization model, which is
+solved by a robust optimal scheduling algorithm. Moreover,
+Jiang et al. [12] has proposed a multiagent MMG system,
+where the individual agent of each MG collects the data from
+local units and performs optimization separately. In addition,
+Bui et al. [13] have proposed the MG agents to well use
+the partially observed information, for achieving the optimal
+energy management of MMG.
+The aforementioned literature focuses on building accurate
+optimization models, which can be summarized as the model-
+based approach. However, there exists an essential drawback,
+i.e., the model-based approach is merely suited for the prede-
+termined scheduling solution rather than a real-time decision.
+In other words, the predetermined scheduling is difﬁcult to
+handle emergencies or the unexpected change in the load
+demand occurring in the MMG system.
+To
+tackle
+this
+problem, the
+learning-based
+approach
+has been developed in recent years [14], [15]. Beneﬁting
+from the development of the physics-informed deep learning
+techniques, the outputs of the black-box model are more
+generalized and interpretable [16]. One of the most represen-
+tative approaches is multiagent deep reinforcement learning
+(MADRL), which is widely deployed in the MMG energy
+management problem due to its nature of interacting with
+the physical characteristic of the real world [17], [18]. For
+instance, the MADRL used in Nakabi and Toivanen [19]
+observes the temperature, energy generation, and other physi-
+cal parameters to control soft load and transaction effectively
+for MMG. The experiments demonstrate the convergence of
+these algorithms and emphasize the outperformance of the
+actor-critic algorithm. Samadi et al. [20] propose an energy
+management approach that takes advantage of a multiagent
+model-free reinforcement learning algorithm. This distributed
+and hierarchical decision mechanism effectively increases the
+energy self-sufﬁciency of MMG. Besides, an MADRL method
+is adopted in Nie et al. [21] to realize the post-disaster
+resilience of the distributed MG system. Aiming to increase
+the income of the system, the MADRL shows its strong adapt-
+ability in different conditions through experiments. Moreover,
+the implementation of MADRL would signiﬁcantly increase
+the autonomy of each MG [22], [23]. For instance, an MADRL
+framework based on the deep neural network is proposed in
+Fang et al. [22] to improve the operational performance and
+autonomy of each participant MG. Liu et al. [23] set the agents
+in different MGs for the distributed control and achieve higher
+MG autonomy. To balance the beneﬁts of the MMG partici-
+pants and guarantee the efﬁciency, Fang et al. [24] propose
+an equilibrium selection multiagent reinforcement learning
+algorithm based on Q-learning to promote the autonomy of
+MG operation.
+However, since the MADRL technology requires massive
+data to train the MG agent, the concern of user privacy is
+raised. The data of the users can be used to analyze their
+habits and even their life tracks. In the case of MMG energy
+management, to train an effective agent with a high generaliza-
+tion, massive energy operation data should be collected from
+different MGs. However, although each MG aims to pursue a
+better performance through experiences’ sharing, they may be
+not willing to submit their processing data because of privacy
+awareness [22]. On the other hand, the security during data
+transmission cannot be guaranteed.
+To tackle the above issues, we introduce an emerging
+distributed learning approach, namely, federated learning (FL),
+for training MADRL in the MMG energy management via
+physics-informed reward [25]. In other words, we apply the
+FL to protect user privacy and guarantee data security while
+ensuring the generalization of each MG agent in the MMG
+system. Speciﬁcally, each MG is controlled by an agent, which
+deploys a recent deep reinforcement model, namely, proximal
+policy optimization (PPO) [26]. Each agent ﬁrst executes
+the self-training according to the local energy operation data
+of each MG to maximize the physics-informed reward, i.e.,
+the economic operation and self energy sufﬁciency. Then,
+the agents upload their local model parameters, such as the
+weights and biases of the model, to a server. After that, these
+parameters are aggregated by the server to construct a global
+model, which will be broadcasted to each MG and replace the
+local model. In this way, agents share their experiences through
+the FL mechanism, which thus enhances their generalization1
+compared with the local training. Moreover, the FL mechanism
+only requires model parameters, and the operation data of each
+MG would stay locally. Therefore, the user privacy and data
+security can be guaranteed.
+The main contributions of this article are presented as
+follows.
+1) An MMG system model is developed for the deployment
+of FL, where each MG contains conventional generators
+(CGs), batteries (BAs), RE generators (REGs), load,
+and the energy management center. Then, a server is
+introduced to implement the FL mechanism which can
+communicate with MGs and aggregate the parameters of
+the MG agent, such as the weight and bias of the neural
+network models. Since the server would not perform as
+a center of MMG that guides the decisions of each MG,
+MGs would endow a high autonomy and suffer from
+less risk of privacy leakage.
+2) A federated MADRL (F-MADRL) algorithm is pro-
+posed for the energy management of the MMG system.
+Each MG has an agent that collects the operation data for
+self-training. Then, the agent parameters are uploaded to
+1Since the MGs in the MMG belong to different kinds of entities, their local
+operation data manifest the preference of local users. Thus, the agent trained
+by local data would be confronted of performances’ decline when operating
+in other MGs, and this phenomenon is termed as the generalization decrease
+of the MG agent.
+Authorized licensed use limited to: Donghua University. Downloaded on July 04,2026 at 06:46:03 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 3 ===
+5904
+IEEE TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS, VOL. 35, NO. 5, MAY 2024
+the server and aggregated to a global agent. Afterward,
+the agent of each MG is replaced by the global one.
+In this way, the privacy of each MG user can be
+protected.
+3) A physics-informed reward is developed by orienting
+targets of the MG agent, i.e., the economic operation
+and the self energy sufﬁciency. The MG agents trained
+through the physics-informed reward would be endowed
+with a better interpretation of action because of the
+consideration of physical targets.
+4) Case studies conducted on the Oak Ridge National
+Laboratory distributed energy control communication
+laboratory microgrid (ORNL-MG) test system [27]
+demonstrate that our proposed F-MADRL algorithm is
+effective under different demands and RE scenarios.
+Moreover, we verify that F-MADRL outperforms other
+state-of-the-art DRL algorithms under the distributed
+MMG model.
+The remainder of this article is organized as follows.
+Section II introduces the theoretical basis of reinforcement
+learning. In Section III, a decentralized MMG model is built.
+Section IV proposes the F-MADRL algorithm and provides
+its overall structure and technical details. In Section V, com-
+prehensive case studies are conducted. Finally, Section VI
+concludes this article.
+II. THEORETICAL BASIS OF REINFORCEMENT LEARNING
+Normally, the Markov decision process (MDP) is deﬁned by
+a ﬁve-tuple ⟨S, A, P, R, γ ⟩, where S is the ﬁnite state space
+that stands for all valid states and A represents the ﬁnite set
+of actions. P = {p(st+1|st, at)} stands for the set of transition
+probability from state st to st+1, and R = r(st, at), R ∈R;
+S × A →R is termed as the reward function, which is
+normally the metric to evaluate the action. γ ∈[0, 1] indicates
+the discount factor, which represents the importance of the
+present reward [18], [28].
+To solve the MDP, a policy π should be developed to
+provide the probability of executing action a when observ-
+ing the state s, i.e., π(a|s) = P[At = a|St = s]. The
+aim of π is to maximize the discounted cumulative reward
+during the ﬁnite time T , which is termed as the return
+function
+Ut =
+T
+
+k=t
+γ k−tr(sk, ak)
+(1)
+where r(sk, ak) is the reward function, which calculates the
+reward value under state sk with action ak; γ
+∈[0, 1]
+is the discount factor, representing the importance of the
+future reward [29]. Then, two kinds of value functions are
+deﬁned based on Ut to help the policy make decisions.
+The ﬁrst is the state value function Vπ(s) and the other is
+the action value function Qπ(a, s), which are formulated as
+follows:
+Vπ(s) = Eπ[Ut|St = s]
+=
+
+a
+π(a|s)
+
+s′
+Pa
+ss′
+
+r(s, a) + γ Vπ
+
+s′
+(2)
+Qπ(a, s) = Eπ[Ut|St = s, At = a]
+=
+
+s′
+Pa
+ss′
+
+r
+
+s, s′|a
+
++ γ
+
+a′
+Qπ
+
+a′, s′
+ 
+(3)
+where Vπ(s) stands for the expectation of future reward at the
+state s, and Qπ(a, s) represents the future expected reward
+when selecting an action a at state s. s′ and a′ stand for the
+possible reaching state and action at the state s, respectively.
+Pa
+ss′ is the transition probability from s to s′ under a. In fact,
+Vπ(s) and Qπ(a, s) are used to evaluate the quality of the
+state s and the action–state pair (a, s), respectively. They are
+updated according to the above two equations and help the
+policy π decide whether reaching the state or executing the
+action.
+III. DECENTRALIZED MMG ENERGY
+MANAGEMENT MODEL
+The decentralized MMG system includes numerous MGs
+that are connected to a distribution power network. Usually,
+an energy management center is set in each MG, which
+performs as an agent to conduct self-training and control the
+dispatchable elements, such as CGs and BAs. In this section,
+to describe the energy management model of the MMG system
+more clearly, we ﬁrst introduce the isolated MG model with
+the MDP format before developing the MMG model.
+A. Isolated MG Energy Management Model
+Fig. 1 illustrates the structure of the isolated MG model and
+a real-world MG system case. Normally, as shown in Fig. 1(a),
+an MG is constructed by ﬁve types of elements: renewable
+power generators, BA, CG, conventional load (CL), and energy
+management center. Note that BAs and CGs are dispatchable
+since their outputs are controlled by the management center.
+On the contrary, because of the high uncertainties of RE, the
+outputs of REG cannot be controlled. In addition, the energy
+management center is termed as the agent that controls these
+dispatchable elements by observing the state of MG operation.
+Following this structure, the ORNL-MG test system is selected
+as the real-world case in this article, which is illustrated in
+Fig. 1(b).
+1) Conventional Generator: It can be seen from Fig. 1 that
+the CG includes diesel engine generator and micro turbine,
+which generate power through fossil fuels. The cost functions
+of CGs can be represented as follows:
+C(PCG,i) = aCG,i P2
+CG,i + bCG,i PCG,i + cCG,i
+(4)
+Pmin
+CG,i ≤PCG,i ≤Pmax
+CG,i
+(5)
+where C(PCG,i) represents the generation cost of ith CG, and
+PCG,i is its generation power. aCG,i, bCG,i, and cCG,i denote the
+cost coefﬁcients of the ith CG. Pmin
+CG,i and Pmax
+CG,i are the lower
+and upper bounds of the ith CG, respectively.
+2) RE Generator: Fig. 1 presents two kinds of REGs,
+namely, wind turbine and photovoltaic. The generation of REG
+normally depends on the natural environment such as wind
+speed, temperature, weather, and solar irradiance [15]. Since
+the REGs do not consume any fossil fuels, their generation
+costs are not considered in this article.
+Authorized licensed use limited to: Donghua University. Downloaded on July 04,2026 at 06:46:03 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 4 ===
+LI et al.: FEDERATED MADRL APPROACH VIA PHYSICS-INFORMED REWARD
+5905
+Fig. 1.
+Structure of (a) isolated MG and (b) ORNL-MG [27].
+3) Battery: As one of the most commonly used energy
+storage devices, BA can store energy generated by CGs and
+REGs and release it when needed. Thus, the BA has two
+operation states, namely, charging and discharging, which are
+represented by the transition of its state of charge and can be
+formulated as follows:
+SOCt+1 = (1 −δ)SOCt −
+Pt
+BA
+ηchCBA
+(6)
+SOCt+1 = (1 −δ)SOCt −ηdchPt
+BA
+CBA
+(7)
+where SOCt and SOCt+1 denote the charging state of BA at
+time t and t +1, respectively. PBA is the charging–discharging
+power of BA. Here, we assume PBA > 0 when the BA is
+discharging, and PBA < 0 when the BA is charging. The
+ηch and ηdch are the charging and discharging efﬁciencies,
+respectively. δ denotes the discharging rate, which is set as
+0.2%. CBA represents the capacity of BA.
+The operation of BA would bring about the costs due to the
+amortized purchase and maintenance, which is formulated by
+the following equation [30]:
+CPBA, j
+ = aBA, j
+PBA, j + 3Pmax
+BA, j(1 −SOC)
+2
++ bBA, j
+
+PBA, j + 3Pmax
+BA, j(1 −SOC)
+
++ cBA, j
+(8)
+Pmax
+BA, j < PBA, j < Pmax
+BA, j
+(9)
+where C(PBA, j) represents the cost of the jth BA. aBA, j,
+bBA, j, and cBA, j are cost coefﬁcients of the jth BA. Pmax
+BA, j and
+Pmin
+BA, j are the upper and lower bounds of BA output power,
+respectively.
+4) Network Power Loss of MG: Practically, there exists the
+power loss because of the operation of generators and the
+transmission of energy in the MG. The power loss usually
+corresponds to the active generation power and can be esti-
+mated as follows [31]:
+λCG = ∂Ploss
+∂PCG
+,
+λREG = ∂Ploss
+∂PREG
+,
+λBA = ∂Ploss
+∂PBA
+(10)
+where λCG, λREG, and λBA represent the power loss coefﬁcients
+of CG, REG, and BA, respectively. According to Mudumbai
+et al. [31], λCG, λREG, and λBA are recommended to be set in
+[0.01, 0.02]. Therefore, they are set as 0.02 in this article.
+Then, the power loss Ploss can be given by the following
+equation [31]:
+Ploss =
+nCG
+
+i=1
+λCGPCG,i +
+nREG
+
+j=1
+λREGPREG, j +
+nBA
+
+k=1
+λBAPBA,k
+(11)
+where nCG, nREG, and nBA are the numbers of CGs, REGs,
+and BAs in the isolated MG, respectively.
+B. Isolated MG Energy Management Model via MDP and
+Physics-Informed Reward
+Since the energy management center of the MG is an agent
+which is trained by the DRL algorithm, the above isolated MG
+model should be reformulated as the MDP model. In addition,
+considering the physical feasibility of the agent, the deﬁnition
+of reward is designed to integrate the physical-informed rules,
+which are presented as follows.
+1) State: In this article, we consider a 24-h scheduling of the
+MG, and each hour is denoted by t ∈{1, 2, . . . , 24}. The state
+of MG at time t includes the energy operation information,
+which is deﬁned as follows:
+st =  Pt−1
+L
+, Pt−1
+REG,1, . . . , Pt−1
+REG,nREG, SOCt−1, Et−1
+λ
+ 
+(12)
+where st indicates the state of MG at time t; Pt−1
+L
+and
+Pt−1
+REG,i stand for the load demand and the ith REG at time
+t −1, respectively. In addition, Et−1
+λ
+is the electricity price
+in the transaction between the MG and the distribution power
+network.
+2) Action: The action at is generated by the agent, which
+controls the power outputs of the CGs and BAs at each time t,
+according to the state st. In this study, it is deﬁned as follows:
+at =
+ 
+Pt
+CG,1, . . . , Pt
+CG,nCG, Pt
+BA,1, . . . , Pt
+BA,nBA
+ 
+.
+(13)
+In DRL, the agent is normally a neural network, which is
+difﬁcult to produce consistent and feasible in the early training
+stage. Therefore, the actions are enforced to fulﬁll the output
+constraints provided in (5) and (9)
+Pt
+CG,i = clipPt
+CG,i, Pmin
+CG,i, Pmax
+CG,i
+,
+i ∈[1, nCG]
+(14)
+Pt
+BA, j = clip
+
+Pt
+BA, j, Pmin
+BA, j, Pmax
+BA, j
+
+,
+j ∈[1, nBA]
+(15)
+where clip(t, tmin, tmax) is the clip function, which returns tmax
+if t > tmax, and tmin if t < tmin.
+Authorized licensed use limited to: Donghua University. Downloaded on July 04,2026 at 06:46:03 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 5 ===
+5906
+IEEE TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS, VOL. 35, NO. 5, MAY 2024
+3) Reward: The design of the reward signiﬁcantly impacts
+the performance of DRL
+training. A speciﬁc
+physical
+task-oriented reward would endow interpretability to the strat-
+egy of the agent [16]. However, in some classical rein-
+forcement learning tasks, such as CartPole [32] and Atari
+Games [33], the design of their rewards is independent of the
+physical characteristic of the problem. For instance, in Cart-
+Pole, the reward is set as 0 if the action is available. Such
+intuitive design of reward may mislead the agent thus slowing
+down the training process and decreasing the interpretability
+of the agent strategy, and it is not suitable for MG energy
+management. Normally, the MG agent is expected to operate
+economically while ensuring self energy sufﬁciency. There-
+fore, considering the physical characteristic of the MG, the
+reward is designed as physics-informed to satisfy the two
+explicit targets, i.e., the training of the agent and realizing
+the requirements of operation cost and self energy sufﬁciency,
+simultaneously. The reward function is deﬁned as follows:
+rt = −wC
+⎛
+⎝
+nCG
+
+i=1
+C
+
+Pt
+CG,i
+
++
+nBA
+
+j=1
+C
+
+Pt
+BA, j
+
+⎞
+⎠
+−wdeEl(t) × abs
+
+Pt
+de
+
+(16)
+where rt is the reward value at time t, and El(t) ≥0 indicates
+the price of purchasing electricity from the distribution power
+grid. wC ∈[0, 1] and wde ∈[0, 1] indicate the weights to limit
+the order of magnitude of reward. abs(·) stands for the absolute
+function. Pt
+de evaluates the deviation between load demand and
+real generation, which is formulated by the following equation:
+Pt
+de = Pt
+L −
+⎛
+⎝
+nCG
+
+i=1
+Pt
+CG,i +
+nREG
+
+j=1
+Pt
+REG, j +
+nBA
+
+k=1
+Pt
+BA,k −Pt
+loss
+⎞
+⎠.
+(17)
+In this study, the physics-informed reward is composed of
+two physical targets of MG, i.e., operation costs and self
+energy sufﬁciency. They are formulated as (nCG
+i=1 C(Pt
+CG,i) +
+nBA
+j=1 C(Pt
+BA, j)) and El(t) × abs(Pt
+de), respectively. To keep
+the order of magnitude of the reward consistent, the self energy
+sufﬁciency is designed as Pt
+de times El(t). Since the reward
+is related to the physical valuables, i.e., Pt
+CG,i, Pt
+BA, j, and
+Pt
+de, it can be endowed the physical meaning. In this way,
+the reward is able to guide the agent to produce a series of
+actions that minimize the generation costs of CGs and BAs
+while ensuring self energy sufﬁciency.
+C. Decentralized MMG Energy Management Model
+As shown in Fig. 2, a decentralized MMG model that
+contains n p MGs is considered in this article. These MGs
+are connected to the distribution power network, and the
+energy transaction between MGs is also allowed. Each MG
+is controlled by an agent, which observes the state st of MG
+and provides the action at.
+Since the MG is encouraged to maximize the physics-
+informed reward rt for achieving energy self-sufﬁciency and
+economic operation, the target of the MMG should be the
+maximum of the systematic rewards rsys,t, which can be
+Fig. 2.
+Structure of the MMG system.
+represented by the sum of rewards obtained by all the MG
+agents. The rsys,t is given by the following equation:
+rsys,t =
+n p
+
+i=1
+ri
+t =
+n p
+
+i=1
+− i × abs
+
+Pt
+i,de
+
+(18)
+where ri
+t represents the reward obtained by the ith MG agent at
+time t.  i and Pt
+i,de are the shrinkage coefﬁcient and deviation
+of MG i, respectively.
+Besides, since the load demand of MG cannot be known
+in advance, excessive or insufﬁcient power generation of an
+isolated MG is unavoidable, and thus, the energy transaction
+in the MMG system is inevitable. Therefore, the energy
+transaction mechanism between different MGs is developed,
+which is given below.
+That is, MG is allowed to conduct energy transactions with
+the distribution power network and other MGs, as shown in
+Fig. 2. If the generated power of MG i exceeds its load demand
+at time t, the excess energy will be sold to other MGs with
+a price Ei(t). If the demand of MG i cannot be satisﬁed, the
+MG will purchase electricity from MG j, which has the lowest
+price of the whole participated MGs
+j = arg min
+l
+El(t) × Ll,
+l ∈
+
+1, 2, . . . , n p
+
+(19)
+where Ll indicates whether the generation of MG l exceeds
+its demand. Ll is set as 1 if the demand is exceeded or
+set as inﬁnite if not. The MGs will preferentially purchase
+the surplus power generated by other MGs. When the MG
+generations are fully consumed, the distribution power network
+will provide power with price Edpn(t), which is usually higher
+than El(t),l ∈[1, 2, . . . , n p].
+IV. F-MARDR ALGORITHM
+As discussed above, the MMG is decentralized, and thus,
+each MG agent has a high autonomy. However, the decen-
+tralized structure threatens the generalization performance of
+the agent, because the diversity of the data in isolated MG
+is limited, which may make the agent getting trap into a
+local optima. To tackle this issue, we propose a federated
+F-MADRL algorithm. The FL is used to improve the gen-
+eralization of the agent during training while ensuring data
+privacy.
+There are two characteristics in the FL, one is called the
+participant and the other is termed as the collaborator. The
+participant j, j ∈[1, n p] is denoted as a neural network
+Authorized licensed use limited to: Donghua University. Downloaded on July 04,2026 at 06:46:03 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 6 ===
+LI et al.: FEDERATED MADRL APPROACH VIA PHYSICS-INFORMED REWARD
+5907
+model f j
+w j . It conducts self-training at the local and uploads
+its parameters w j to the collaborator periodically, where n p
+is the number of participants which are processed in parallel.
+Constrained by the data privacy, the participant f j
+w j only trains
+on the local dataset, which may cause insufﬁcient training
+since the capacity and diversity of the data are limited. The FL
+could tackle this problem through the following steps. First,
+at the training epoch e, e ∈[1, Ne], the model of the jth
+participant is deﬁned as f j
+we
+j, which conducts self-training to
+obtain the parameters we
+j, where Ne is the total number of
+training epochs. Then, each participant uploads its parameters
+to the collaborator and constructs a parameter list we =
+[we
+1, we
+2, . . . , we
+n p]. The collaborator calculates the weight
+average of we to estimate a global model f e+1
+G
+with parameters
+we+1
+G . After aggregation, the collaborator broadcasts we+1
+G
+to all the participants and replaces their own parameters,
+i.e., we+1
+G
+= we+1
+1
+= we+1
+2
+· · · = we+1
+n p . The aggregating
+mechanism of FL is formulated by the following equations:
+we+1
+j
+= we
+G −η∇Fj
+
+we
+j
+
+∀j
+(20)
+we+1
+G
+=
+n p
+
+j=1
+1
+n p
+we+1
+j
+(21)
+where η and Fj(·) are the learning rate and local loss function
+of the jth participant, respectively.
+In this article, the participant can be considered as the agent
+in each MG and the collaborator is a server that takes the
+responsibility for aggregating and broadcasting the parame-
+ters. The F-MADRL aims to solve the following distributed
+optimization model:
+min
+we
+G
+F
+
+we
+G
+
+=
+n p
+
+j=1
+p j Fj
+
+we
+j
+
+(22)
+where F(·) is the global loss function. p j represents the
+relative weight of each MG agent on the global model, and
+p j > 0, n p
+k=1 p j = 1. We set p j = |D j|/ n p
+j=1 |D j|, where
+|D j| is the data size used for the local training of the jth
+MG. Note that F(·) cannot be directly computed without the
+information sharing of each participant.
+The overall structure of F-MADRL is illustrated in Fig. 3.
+At the epoch e, the agent in three MGs are ﬁrst replaced by the
+global agent in the (e−1)th epoch. Then, the three MG agents
+conduce self-training to obtain parameters, which are uploaded
+to the server for aggregation. Next, the global agent would be
+built on the server, and the parameters will be broadcasted to
+the MG agents for the (e + 1)th epoch.
+It can be learned from the ﬁgure that the F-MADRL
+contains two parts. One is executed on the server, which can
+be considered as the collaborator, and the other is executed on
+MG agents, which can be considered as the participant. The
+procedures running on the server and MG agent are provided
+in Sections IV-A and IV-B, respectively.
+A. F-MADRL: Server Part
+The F-MADRL proceed on the server mainly focuses on
+the aggregating and broadcasting of the agent parameters, and
+its procedure is shown in Algorithm 1.
+Fig. 3.
+Proposed F-MADRL algorithm.
+Algorithm 1 F-MADRL Algorithm on the Server
+1: Execute on the server:
+2: Initialize the model parameters w0
+G and broadcast them to
+the MG agents.
+3: for Global epoch e = 1 to Ne do
+4:
+for MG agent j = 1 to n p parallelly do
+5:
+Update the MG parameter we
+j at the local agent.
+6:
+Store the we
+j.
+7:
+Upload the we
+j to the server
+8:
+end for
+9:
+Receive the parameters from each MG agent and con-
+struct
+10:
+we ←[we
+1, we
+2, . . . , we
+n p]
+11:
+Aggregating the model parameters through
+12:
+we+1
+G
+= n p
+j=1
+1
+n p we+1
+j
+.
+13:
+Broadcast the we+1
+G
+to other MG agents.
+14: end for
+At the beginning of the training epoch of F-MADRL, the
+server would build a global agent with the parameter w0
+G,
+which is then broadcasted to each MG agent for self-training.
+Since the agents update their parameters in parallel, the
+server aggregates the parameters’ list we = [we
+1, we
+2, . . . , we
+n p]
+by (21). Furthermore, the aggregated parameters we+1
+G
+are used
+to update the global model parameters and broadcast to the
+MG agents for the training of epoch e + 1.
+B. F-MADRL: MG Agent
+On the other hand, the MG agent adopts the self-training in
+the procedure of F-MADRL and cooperates with the server.
+When the MG agents receive the parameter we
+G from the global
+model at the epoch e, their parameters are replaced by we
+G,
+i.e., we
+j = we
+G. Then, each MG agent executes Ni individual
+self-training epochs in parallel. Afterward, the parameters of
+the MG agent at the last self-training epoch, namely, θNi , μNi ,
+are stored and uploaded to the server.
+In this article, each MG agent performs self-training with a
+famous deep reinforcement learning algorithm, namely, PPO,
+to obtain the optimal policy π. There are two types of deep
+neural networks, namely, actor and critic, deﬁned by the
+MG agent. Actor πθ is parameterized by θ, which aims to
+Authorized licensed use limited to: Donghua University. Downloaded on July 04,2026 at 06:46:03 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 7 ===
+5908
+IEEE TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS, VOL. 35, NO. 5, MAY 2024
+Fig. 4.
+Procedure of the self-training of the MG agent.
+produce the action, and the critic is denoted as V μ, which is
+parameterized by μ.
+The overall training process of the self-training proce-
+dure during one episode is illustrated in Fig. 4. First, the
+experiment tuples T
+are sampled T
+=
+{⟨s0, a0,r0, s1⟩,
+⟨s1, a1,r1, s2⟩, . . . , ⟨sU, aU,rU, sU+1⟩} where U indicates the
+length of T. Then, the loss function of the actor at the kth
+episodes is calculated, which is deﬁned as follows:
+LC = Es,a∼T
+
+min
+
+πθ
+k (a | s)
+πθ
+k−1(a | s) A
+πθ
+k
+s,a,
+clip
+
+πθ
+k (a | s)
+πθ
+k−1(a | s), 1 − , 1 +  
+
+A
+πθ
+k
+s,a
+ 
+(23)
+where Es,a∼T [·] represents the empirical average over the
+sampled experiment tuples T . πk−1 and πk stand for the
+previous and new policy, respectively.  is the clip parameter.
+Aπk
+s,a stands for the advantage, which measures if the action is
+worth taking by comparing the action value and state value
+Aπk
+st,at = Eτ[U|s0 = st, a0 = at] −V (st) = Q(st, at) −V (st).
+(24)
+However, Aπk
+s,a cannot be directly obtained since Q(st, at)
+is difﬁcult to be determined. In this way, the generalized
+advantage estimation method is implemented in this study
+A
+πθ
+k
+s,a = δV
+0 + (γ λ)δV
+1 + (γ λ)2δV
+2 , . . . , +(γ λ)U−t+1δV
+U−1 (25)
+where γ ∈[0, 1] and λ ∈[0, 1] represent the discount factor
+and a hyperparameter that adjust the tradeoff between bias and
+variance of the estimation, respectively. Note that the variance
+would be increased when raising λ while the bias is decreased
+accordingly. According to the recommendation of Schulman
+et al. [26], λ is set as 0.95. δV
+k is calculated by the following
+equation:
+δV
+k = rk + γ V μ
+k (st+1) −V μ
+k (st)
+(26)
+where V μ
+k (st+1) and V μ
+k (st) are given by the critic, which is
+trained by the loss function LV
+LV = Es,a∼T
+
+γ V μ
+k (st+1) + r(st, at) −V μ
+k (st)
+2
+.
+(27)
+With the above equations, the parameters θ and μ of the
+actor and the critic can be updated by the following equations:
+θk+1 = θk + ηπ∇θkLC
+(28)
+μk+1 = μk + ηV ∇μkLV
+(29)
+where ηπ and ηV are the learning rates of the actor and critic,
+respectively. Since both LC and LV are optimized in each MG
+agent of the proposed F-MADRL algorithm, they are the local
+loss functions which construct the global loss following (22).
+Overall, the F-MADRL algorithm applied on the server can
+be summarized in Algorithm 2.
+Algorithm 2 F-MADRL Algorithm on the MG Agent
+1: Execute on each MG agent:
+2: Parallel running on j, j ∈[1, n p] agent at global epoch e
+3: Receive the parameters from the server we
+j ←we
+G
+4: for Individual training epoch i = 1 to Ni do
+5:
+Collect the experience tuple T
+=
+{⟨s0, a0,r0, s1⟩,
+⟨s1, a1,r1, s2⟩, . . . , ⟨sU, aU,rU, sU+1⟩}
+6:
+Compute the discounted factor:
+7:
+δV
+k ←rk + γ V μ
+k (st+1) −V μ
+k (st)
+8:
+Estimate the advantage:
+9:
+A
+πθ
+k
+s,a ←δV
+0 + (γ λ)δV
+1 + (γ λ)2δV
+2 , . . . , +(γ λ)U−t+1δV
+U−1
+10:
+Calculate the loss function of the actor:
+11:
+LC ←Es,a∼T [min( πθ
+i (a|s)
+πθ
+i−1(a|s) A
+πθ
+i
+s,a, clip( πθ
+i (a|s)
+πθ
+i−1(a|s), 1−
+12:
+ , 1 +  )A
+πθ
+i
+s,a)]
+13:
+Update the actor parameter:
+14:
+θi+1 ←θi + ηπ∇s,a∼T LC
+15:
+Calculate the loss function of the critic:
+16:
+LV ←Es,a∼T [(γ V μ
+i (st+1) + r(st, at) −V μ
+i (st))2]
+17:
+Update the critic parameter:
+18:
+μi+1 ←μi + ηV ∇μi LV
+19: end for
+20: Store the network parameters. we
+j ←{θNi, μNi }
+21: Upload the parameters we
+j to the server.
+C. Theoretical Convergence Analysis of the F-MADRL
+In this section, the convergence of F-MADRL is evaluated.
+At ﬁrst, the following assumptions considering the function
+Fk, k ∈[1, n p] are made, by referring to Wang et al. [34].
+Assumption 1: Fk is L-smooth, ∀w, w′,   Fk(w)− Fk(w′)
+ 2 ≤L w −w′ ; Fk(w) ≤Fk(w′) + ∇Fk(w′)T (w −w′) +
+(L/2) w′ −w 2
+2.
+Assumption
+2:
+Fk
+is
+μ-strongly
+convex,
+∀w,
+w′,
+Fk(w) −(μ/2) Fk 2 is convex;
+Fk(w)
+≥
+Fk(w′) +
+∇Fk(w′)T (w −w′) + (μ/2) w′ −w 2
+2.
+Based on the above Assumptions, we have the following
+Lemmas.
+Lemma 1: F is μ-strongly convex and L-smooth.
+Proof: Straightforwardly from Assumptions 1 and 2,
+in line with the deﬁnition of convex, F is the ﬁnite sum of
+Fk, and thus, it is μ-strongly convex and L-smooth as well.
+Authorized licensed use limited to: Donghua University. Downloaded on July 04,2026 at 06:46:03 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 8 ===
+LI et al.: FEDERATED MADRL APPROACH VIA PHYSICS-INFORMED REWARD
+5909
+Lemma 2: ∀w, w′ ∈Rn and wt = w + t(w −w′) for t ∈
+[0, 1]. Then
+F(w) −F
+
+w′
+=
+ 1
+0
+∇F(wt)T 
+w′ −w
+
+dt
+(30)
+and
+F(w) −Fw′ −∇F(w)T w′ −w
+=
+ 1
+0
+(∇F(wt) −∇F(w))T w′ −wdt.
+(31)
+Proof: (30) follows the fundamental theorem of calculus.
+(31) follows from (30) by subtracting ∇F(w)T (w′ −w) from
+both sides of the equation.
+Lemma 3: If F is smooth and μ-strongly convex for μ > 0,
+then for w∗= arg minw F(w)
+1
+2μ ∇F(w) 2
+2 ≥F(w) −w∗≥μ
+2  w −w∗ 2
+2.
+(32)
+Proof: Applying Lemma 2, we have
+F(w) ≥F(w∗) + ∇F(w∗)T (w −w∗) + μ
+2  w∗−w 2
+2.
+(33)
+Using the fact that ∇F(w∗) = 0, we yield
+F(w) −F(w∗) ≥μ
+2  w∗−w 2
+2
+(34)
+which is the right side of (33).
+Note that
+F(w∗) ≥min
+y
+F(y) + ∇F(w)T (y −w) + μ
+2  w −y 2
+2
+(35)
+since y = w−(1/μ) ∇ F(w) minimizes the right side of the
+above inequality, we yield
+min
+y
+
+F(y) + ∇F(w)T (y −w) + μ
+2  w −y 2
+2
+
+≥F(w) −1
+2μ ∇F(w) 2
+2
+(36)
+namely
+1
+2μ ∇F(w) 2
+2 ≥F(w) −F(w∗).
+(37)
+Theorem 1: Considering F is L-smooth and μ-strongly
+convex, let w∗= arg minw F(w), and w is the parameter at
+the kth iteration. Then
+F(wk) −F(w∗) ≤
+
+1 −μ
+L
+k
+(F(w0) −F(w∗)).
+(38)
+Consequently, it requires (L/μ) log(F(w0) −F(w∗) ) itera-
+tions to ﬁnd  -optimal solution.
+Proof: Applying Lemma 2, we have
+|F(w) −F
+
+w′
+−∇F(w)T 
+w′ −w
+
+|
+≤|
+ 1
+0
+(∇F(wt) −∇F(w))T 
+w′ −w
+
+dt|
+≤
+ 1
+0
+(∇ F(wt) −∇F(w) ) w′ −w dt.
+(39)
+Based on Assumption 1,  F(wt) −∇F(w)) ≤t w −w′ .
+Note that wt −w = t(w −w′). Then, we have
+|F(w) −F
+
+w′
+−∇F(w)T 
+w′ −w
+
+|
+≤
+ 1
+0
+(∇ F(wt) −∇F(w) ) w′ −w dt
+≤L
+2  w −w′ 2
+2.
+(40)
+Note that
+wk+1 = wk −η∇F(wk)
+(41)
+where η > 0 represents the learning rate. Then, we yield
+F(wk+1) −
+
+F(wk) + η ∇F(wk) 2
+2
+
+≤η2L
+2  ∇F(wk) 2
+2
+(42)
+if we pick η
+=
+(1/L), then
+F(wk+1)
+≤
+F(wk) −
+(1/2L) ∇F(wk) 2
+2.
+From
+Lemma
+3,
+ ∇F(w) 2
+2
+≥
+2μ(F(w) −F(w∗)). When putting them together
+F(wk+1) −F(w∗) ≤F(wk) −F(w∗) −1
+2L  ∇F(wk) 2
+2
+≤F(wk) −F(w∗)
+−μ
+L (F(wk) −F(w∗))
+=
+
+1 −μ
+L
+
+(F(wk) −F(w∗)).
+(43)
+Repeatedly applying this bound yields
+F(wk) −F(w∗) ≤
+
+1 −μ
+L
+k
+(F(w0) −F(w∗)).
+(44)
+Using the fact that 1 + x ≤ex, the convergence rate is
+given by picking k ≥(L/μ) log(F(w0) −F(w∗) ), where
+ = F(wk) −F(w∗), denoting the error between the loss at
+epoch k and the optimal one.
+V. CASE STUDY
+A. Experiment Setup
+In this section, we conduct case studies based on the modi-
+ﬁed ORNL-MG test system to demonstrate the effectiveness of
+the proposed F-MADRL algorithm. Without loss of generality,
+three MGs are applied to form the MMG system, and the
+parameters of elements in each MG are provided in Table I.
+A wind turbine and a PV panel are set as the REGs and
+the corresponding power data are referred from Logenthiran
+et al. [35]. The forecast errors of wind and PV power are
+assumed to be independent of the Gaussian distribution with a
+15% standard variation [35]. In addition, the time horizon of
+the experiment is set as 24-h schedule, and the time interval
+is set to be 1 h. The forecast total load demands and the
+day-ahead market price of each MG are provided in Table II,
+and the forecast error of the load is assumed to follow the
+Gaussian distribution with a 3% standard variation [36], [37].
+It can be learned from the load data that the power demands
+of MG1 surpass its maximum capacity, which means MG1
+operates in the energy self-insufﬁcient state. On the contrary,
+MG2 and MG3 operate in the energy self-sufﬁcient state.
+As for F-MADRL, the training epoch is set as 1500.
+Moreover, γ and λ are set as 0.99 and 0.95, respectively [29].
+A famous neural network optimizer, Adam [26], is used to
+update F-MADRL, and the learning rate of actor ηπ and critic
+ηV is set as 0.0001 and 0.001, respectively. Note that all
+the simulation studies are conducted using Python 3.6.8 with
+PyTorch 1.7.1.
+Authorized licensed use limited to: Donghua University. Downloaded on July 04,2026 at 06:46:03 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 9 ===
+5910
+IEEE TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS, VOL. 35, NO. 5, MAY 2024
+TABLE I
+PARAMETERS’ SETTING OF EACH MG
+Fig. 5.
+Reward curve of (a) MG1 agent, (b) MG2 agent, and (c) MG3 agent
+during training.
+B. Analysis of the F-MADRL Algorithm
+In this section, the proposed F-MADRL is applied to the
+MMG system and its performance evaluation is reported.
+Fig. 5 presents the reward curve of the three MG agents,
+respectively. During the whole training epochs, the FL mech-
+anism is applied every 500 epochs and the training process
+can be separated into three phases. Since the FL mechanism
+averages the parameters of the MG agents, the reward value
+of each agent would dramatically change in the two adjacent
+phases and all three MG agents receive beneﬁts from this.
+For instance, depending on the parameter setting of each
+MG, the MG1 agent would not converge in the ﬁrst phase.
+However, after applying the FL mechanism, its reward raises
+at the 500th epoch and converges at −15059.85 at the end of
+phase 2. Besides, although MG2 agent converges in phase 1,
+the FL mechanism substantially renews its parameters and
+further raises the reward to −3524.99 in the second phase.
+As for MG3 agent, the beneﬁt of the FL mechanism is mainly
+shown in the third phase, which helps the agent escape from
+the local optimal converged at phase 2 and ﬁnally achieve
+a higher reward at the end of training. In summary, the FL
+mechanism can be used to get rid of the local optimum,
+which is caused by insufﬁcient training data due to privacy
+constraints.
+Then, the policies obtained by F-MADRL are applied to
+determine the scheduling of each MG. Speciﬁcally, Figs. 6−8
+denote the scheduling of MG1, MG2, and MG3, respectively.
+Each ﬁgure includes two kinds of graphs, where the above
+graph is the scheduling solution and the lower graph shows
+the unbalanced demands, namely, the difference between gen-
+Fig. 6.
+Scheduling of MG1 obtained by the F-MADRL algorithm.
+Fig. 7.
+Scheduling of MG2 obtained by the F-MADRL algorithm.
+eration and load demands of the MG. The positive unbalanced
+demands indicate the generation of the MG surpasses its load
+demands, which means the demands are satisﬁed while the
+negative one means the demands are unsatisﬁed.
+As shown in Fig. 6, since the demands of MG1 are higher
+than its capacity, MG1 operates in the energy self-insufﬁcient
+state. Therefore, the demands of MG1 are all unsatisﬁed during
+24 h. Moreover, the scheduling of BA generation obtained
+by the agent mainly considers the power balance between
+its charging and discharging. In the ﬁrst hour, the power
+demand of MG1 is 457.7 kW, which is higher than the
+capacity of MG1, and thus, the agent chooses to discharge
+the battery for demand supply. Since MG1 operates in the
+energy self-insufﬁcient state, it requires external power from
+other MGs and distribution power system, which is achieved
+by the transaction mechanism in the MMG system. Even the
+unbalanced demands of MG1 are as high as −402 kW at
+20:00, these power shortages can be supplied by other MGs
+and the distribution power network. This is the reason why
+MG1 agent does not fully operate its CG and BA all the time.
+The agent learns that the energy transaction is more economic
+than generating power by itself.
+The scheduling policies of MG2 agent and MG3 agent
+are similar but different from that of MG1. As illustrated
+in Figs. 7 and 8, since MG2 and MG3 work in an energy
+Authorized licensed use limited to: Donghua University. Downloaded on July 04,2026 at 06:46:03 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 10 ===
+LI et al.: FEDERATED MADRL APPROACH VIA PHYSICS-INFORMED REWARD
+5911
+TABLE II
+FORECASTING WIND AND PV POWER, TRADING PRICE, AND LOADS OF THE THREE MGS
+Fig. 8.
+Scheduling of MG3 obtained by the F-MADRL algorithm.
+self-sufﬁcient state, their power generations of CG could
+almost satisfy their demand. In this way, to shrink the gen-
+eration costs, the two agents perform a similar strategy in
+the operation of BA. In the most time of 24 h, the power
+outputs of BA are almost 0. Alternatively, the power of CGs
+would change with the demands of MGs. For example, in the
+15th and 16th hours, the generation and demand of MG2 are
+nearly equal, thus only causing minor unbalanced demands in
+these 2 h. Besides, the absolute values of unbalanced demands
+during MG2 and MG3 operation are lower than 50 kW.
+Those unbalanced demands can be eliminated according to the
+transaction mechanism in the MMG. In this way, the excess
+powers are sold to other MGs that work in a self-insufﬁcient
+state and the power shortages can be supplied by the power
+from other MGs or the distribution power network.
+The above experiments show the efﬁciency of introducing
+an FL mechanism in the proposed F-MADRL algorithm. The
+MG agents trained by F-MADRL make efﬁcient scheduling
+solutions regardless of whether the MG operates in the energy
+self-sufﬁcient or self-insufﬁcient state.
+C. Interpretation of the Agents’ Performance
+It should be noted that the physics-informed reward would
+bring about the interpretation of the strategy of agents, to some
+Fig. 9.
+Changes in the (a) unbalanced demands, (b) costs of CG, and
+(c) cost of BA according to the training iterations.
+degree. The three aspects of the reward function, i.e., the
+costs of CG and BA and the balanced demand, are illustrated
+along with iterations to study their changes. In this section,
+six iterations located at a different phase of the training are
+selected, namely, the 1st, 50th, 500th, 700th, 900th, and 1400th
+iterations. Wherein the 1st and 50th iterations would present
+the training performance in the early stages, the 500th iteration
+is located at the end of the ﬁrst federated phase and the other
+three iterations are set at the convergent state of the reward
+value. Note that the values of the reward increase along with
+the increase in the six iterations.
+Fig. 9 illustrates the changes in the unbalanced demands,
+costs of CG, and cost of BA in Fig. 9(a)–(c), respectively.
+As shown in Fig. 9(a), the unbalanced demand of MG1
+decreases from about 5500 to 3000 kW at the 1400th iter-
+ation. Besides, the ﬁgures for MG2 and MG3 also present
+a downward trend, and they start at 3000 and 1000 kW at
+the 1st iteration and descend to lower than 500 kW after
+1400 iterations. This means the agents could learn strategies
+for energy self-sufﬁciency as much as possible. Besides,
+Fig. 9(b) and (c) presents the different strategies of MG agents
+Authorized licensed use limited to: Donghua University. Downloaded on July 04,2026 at 06:46:03 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 11 ===
+5912
+IEEE TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS, VOL. 35, NO. 5, MAY 2024
+TABLE III
+TEST REWARDS OF THE MG AGENTS
+when operating in the energy self-sufﬁcient and energy self-
+insufﬁcient state. As illustrated in Fig. 9(b), the CG costs
+of MG2 and MG3 decrease, whereas MG1 raises. A similar
+situation can also be observed in Fig. 9(c), and the costs of BA
+for MG1 increase from around $6000–$25000. The BA costs
+for MG2 and MG3 continuously decrease from about $10000
+and dramatically increase at the 900th and 1400th iterations.
+Overall, the MG agents trained by our proposed F-MADRL
+algorithm could satisfy the target of the MMG system, namely,
+the energy self-sufﬁcient with the designed physics-informed
+reward. The algorithm has endowed the explainability by
+analyzing the performance of the MG agents from the angle
+of the physics-informed reward.
+D. Performance Comparison
+In this section, the effectiveness of introducing the FL
+mechanism is demonstrated by comparing the performance of
+the proposed F-MADRL with other algorithms that merely
+implement the self-training of MG agents. These algorithms
+include numerous well-known deep reinforcement learning
+algorithms, namely, PPO, A2C, and TRPO. Since they are
+conducted on multiple MG agents, these comparative algo-
+rithms are termed PPO-MADRL, A2C-MADRL, and TRPO-
+MADRL, respectively.
+The comparisons are conducted from two aspects, i.e.,
+convergence and generalization. First, the convergences of the
+MG agents are illustrated by their reward curves. Besides,
+to compare the generalization of the MG agents, the testing
+rewards are set as the metric, which are obtained by testing the
+agents in both the energy self-sufﬁcient and self-insufﬁcient
+states. The MG agents are easy to get trapped in local optima
+since they are trained by the local operation data, which merely
+contain the preference of the local user. Consequently, the
+testing reward is applied to well verify the generalization
+of F-MADRL. Note that the physics-informed reward is a
+sufﬁcient index for performance comparison, since the eco-
+nomic cost and power balance are measured in the reward,
+simultaneously.
+Fig. 10 shows comparison of the convergence of each
+algorithm, and the subplots (a), (b), and (c) represent the
+training process of MG1 agent, MG2 agent, and MG3 agent,
+respectively. As shown in this ﬁgure, A2C-MADRL performs
+the worst, under the same learning rate and training epoch, and
+the agents trained by A2C-MADRL cannot be well-converged.
+In addition, although PPO-MADRL and TRPO-MADRL are
+able to train the converge agents, their rewards are lower than
+that of F-MADRL because of the lack of the mechanism of
+sharing information.
+Fig. 10.
+Training reward of each MG agent.
+In addition to the reward curves, the generalization of
+F-MADRL is veriﬁed in Table III, which presents the test
+rewards of each MG agent in the energy self-sufﬁcient and
+self-insufﬁcient state. In this ﬁgure, the value of the best test
+reward under each algorithm is bold. It can be learned that the
+test rewards obtained by F-MADRL are −29017, −9529, and
+−2935 for the three MG agents under an energy self-sufﬁcient
+state, which surpasses other comparative algorithms. Besides,
+the test rewards of three MG agents trained by F-MADRL
+are −28650, −10276, and −3172, which perform the best in
+the energy self-insufﬁcient state along with the comparative
+algorithms as well. In addition, since the performance of the
+F-MADRL is better than those of comparative algorithms
+in both the energy self-sufﬁcient and self-insufﬁcient states,
+it can be concluded that F-MADRL has a better generalization
+performance.
+The comparisons clarify that the introduction of the FL
+mechanism leads to performance diversity between the pro-
+posed F-MADRL and the other three algorithms. Since the
+MG agents trained by PPO-MADRL, A2C-MADRL, and
+TRPO-MADRL are only based on the local operation data
+of MG due to the limitation of privacy and thus caus-
+ing lower diversity of the training data. Consequently, the
+decision-making ability of MG agents would decline. The
+introduction of the FL mechanism alleviates this drawback.
+Using FL, the experiences of MG agents can be shared without
+threatening user privacy and data security. In this way, the
+generalization ability of the agent would be improved, as ver-
+iﬁed in the above experiments. Therefore, the comparisons
+conducted in this section demonstrate the effectiveness of
+introducing the FL mechanism in the MADRL algorithm and
+also reveal a better generalization of F-MADRL.
+VI. CONCLUSION
+This article proposes an F-MADRL algorithm for the
+MMGs’ system energy management. A decentralized MMG
+Authorized licensed use limited to: Donghua University. Downloaded on July 04,2026 at 06:46:03 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 12 ===
+LI et al.: FEDERATED MADRL APPROACH VIA PHYSICS-INFORMED REWARD
+5913
+model is built ﬁrst, which includes numerous isolated MGs
+and an agent is used to control the dispatchable elements
+of each MG to achieve the physics-informed reward. Due
+to privacy protection and data security, the F-MADRL is
+implemented to train the agents. First, each agent adopts self-
+training. Then, the FL mechanism is introduced to build a
+global agent that aggregates the parameters of all the local
+agents on the server and replaces the local MG agent with the
+global one. Therefore, the experiences of each agent can be
+shared without threatening the privacy and data security.
+The case studies are conducted on an MMG with three
+isolated MGs. The convergence and the performance of
+F-MADRL are illustrated ﬁrst. Then, explanations of the
+strategy of the three MG agents are presented by decomposing
+the physics-informed reward under different iterations. After-
+ward, by comparing with PPO-MADRL, A2C-MADRL, and
+TRPO-MADRL, the F-MADRL achieves higher test rewards,
+which means a better generalization. Therefore, it indicates the
+performance enhancement of introducing the FL mechanism
+in the MADRL and also demonstrates the effectiveness of our
+proposed F-MADRL. In this article, the uncertainty of RE is
+not considered because its complexity will cause difﬁculties in
+the training of F-MADRL and reduce the accuracy of the MG
+agent strategy. This issue is worth investigating in our future
+work.
+REFERENCES
+[1] G. Liu, Q. Sun, R. Wang, and X. Hu, “Nonzero-sum game-based voltage
+recovery consensus optimal control for nonlinear microgrids system,”
+IEEE Trans. Neural Netw. Learn. Syst., early access, Mar. 11, 2022,
+doi: 10.1109/TNNLS.2022.3151650.
+[2] Q. Sun, Y. Li, D. Ma, Y. Zhang, and D. Qin, “Model predictive direct
+power control of three-port solid-state transformer for hybrid AC/DC
+zonal microgrid applications,” IEEE Trans. Power Del., vol. 37, no. 1,
+pp. 528–538, Feb. 2022.
+[3] H. Zhang, D. Yue, C. Dou, X. Xie, K. Li, and G. P. Hancke,
+“Resilient optimal defensive strategy of TSK fuzzy-model-based micro-
+grids’ system via a novel reinforcement learning approach,” IEEE
+Trans. Neural Netw. Learn. Syst., early access, Aug. 31, 2021, doi:
+10.1109/TNNLS.2021.3105668.
+[4] Y. Li et al., “Optimal operation of multimicrogrids via cooperative
+energy and reserve scheduling,” IEEE Trans. Ind. Informat., vol. 14,
+no. 8, pp. 3459–3468, Aug. 2018.
+[5] W. Liu, W. Gu, J. Wang, W. Yu, and X. Xi, “Game theoretic non-
+cooperative distributed coordination control for multi-microgrids,” IEEE
+Trans. Smart Grid, vol. 9, no. 6, pp. 6986–6997, Nov. 2018.
+[6] H. Farzin, R. Ghorani, M. Fotuhi-Firuzabad, and M. Moeini-Aghtaie,
+“A market mechanism to quantify emergency energy transactions value
+in a multi-microgrid system,” IEEE Trans. Sustain. Energy, vol. 10,
+no. 1, pp. 426–437, Jan. 2019.
+[7] S. A. Areﬁfar, M. Ordonez, and Y. A.-R. I. Mohamed, “Energy manage-
+ment in multi-microgrid systems-development and assessment,” IEEE
+Trans. Power Syst., vol. 32, no. 2, pp. 910–922, Mar. 2017.
+[8] Y. Z. Li, P. Wang, H. B. Gooi, J. Ye, and L. Wu, “Multi-objective optimal
+dispatch of microgrid under uncertainties via interval optimization,”
+IEEE Trans. Smart Grid, vol. 10, no. 2, pp. 2046–2058, Mar. 2019.
+[9] E. J. Ng and R. A. El-Shatshat, “Multi-microgrid control systems,” in
+Proc. IEEE PES Gen. Meeting, Jul. 2010, pp. 1–6.
+[10] X. Yang, H. He, Y. Zhang, Y. Chen, and G. Weng, “Interactive energy
+management for enhancing power balances in multi-microgrids,” IEEE
+Trans. Smart Grid, vol. 10, no. 6, pp. 6055–6069, Nov. 2019.
+[11] Y. Liu et al., “Distributed robust energy management of a multimicrogrid
+system in the real-time energy market,” IEEE Trans. Sustain. Energy,
+vol. 10, no. 1, pp. 396–406, Jan. 2019.
+[12] W. Jiang, K. Yang, J. Yang, R. Mao, N. Xue, and Z. Zhuo, “A multiagent-
+based hierarchical energy management strategy for maximization of
+renewable energy consumption in interconnected multi-microgrids,”
+IEEE Access, vol. 7, pp. 169931–169945, 2019.
+[13] V. Bui, A. Hussain, and H.-M. Kim, “A multiagent-based hierarchical
+energy management strategy for multi-microgrids considering adjustable
+power and demand response,” IEEE Trans. Smart Grid, vol. 9, no. 2,
+pp. 1323–1333, Mar. 2018.
+[14] Y. Li et al., “Dense skip attention based deep learning for day-ahead
+electricity price forecasting,” IEEE Trans. Power Syst., early access,
+Oct. 27, 2022, doi: 10.1109/TPWRS.2022.3217579.
+[15] Z. Li, Y. Li, Y. Liu, P. Wang, R. Lu, and H. B. Gooi, “Deep learning
+based densely connected network for load forecasting,” IEEE Trans.
+Power Syst., vol. 36, no. 4, pp. 2829–2840, Jul. 2021.
+[16] B. Huang and J. Wang, “Applications of physics-informed neural net-
+works in power systems—A review,” IEEE Trans. Power Syst., vol. 38,
+no. 1, pp. 572–588, Jan. 2023.
+[17] Y. Du and F. Li, “Intelligent multi-microgrid energy management based
+on deep neural network and model-free reinforcement learning,” IEEE
+Trans. Smart Grid, vol. 11, no. 2, pp. 1066–1076, Mar. 2020.
+[18] L. Yu, S. Qin, M. Zhang, C. Shen, T. Jiang, and X. Guan, “A review
+of deep reinforcement learning for smart building energy management,”
+IEEE Internet Things J., vol. 8, no. 15, pp. 12046–12063, Aug. 2021.
+[19] T. A. Nakabi and P. Toivanen, “Deep reinforcement learning for energy
+management in a microgrid with ﬂexible demand,” Sustain. Energy,
+Grids Netw., vol. 25, Mar. 2021, Art. no. 100413.
+[20] E. Samadi, A. Badri, and R. Ebrahimpour, “Decentralized multi-agent
+based energy management of microgrid using reinforcement learning,”
+Int. J. Electr. Power Energy Syst., vol. 122, Nov. 2020, Art. no. 106211.
+[21] H. Nie, Y. Chen, Y. Xia, S. Huang, and B. Liu, “Optimizing the post-
+disaster control of islanded microgrid: A multi-agent deep reinforcement
+learning approach,” IEEE Access, vol. 8, pp. 153455–153469, 2020.
+[22] X. Fang, Q. Zhao, J. Wang, Y. Han, and Y. Li, “Multi-agent deep
+reinforcement learning for distributed energy management and strat-
+egy optimization of microgrid market,” Sustain. Cities Soc., vol. 74,
+Nov. 2021, Art. no. 103163.
+[23] W. Liu, Z. Wen, Y. Shen, and Z. Zhang, “Reinforcement learning-
+based distributed secondary optimal control for multi-microgrids,” in
+Proc. IEEE Conf. Energy Internet Energy Syst. Integr. (EI2), Nov. 2017,
+pp. 1–4.
+[24] X. Fang, J. Wang, G. Song, Y. Han, Q. Zhao, and Z. Cao, “Multi-
+agent reinforcement learning approach for residential microgrid energy
+scheduling,” Energies, vol. 13, no. 1, p. 123, Dec. 2019.
+[25] S.
+Lee
+and
+D.-H.
+Choi,
+“Federated
+reinforcement
+learning
+for
+energy management of multiple smart Homes with distributed energy
+resources,” IEEE Trans. Ind. Informat., vol. 18, no. 1, pp. 488–497,
+Jan. 2022.
+[26] J. Schulman, F. Wolski, P. Dhariwal, A. Radford, and O. Klimov,
+“Proximal policy optimization algorithms,” 2017, arXiv:1707.06347.
+[27] Distributed Energy Communications & Controls Laboratory Activities.
+Accessed:
+Mar. 28, 2022. [Online].
+Available:
+https://energy.gov/
+sites/prod/ﬁles/SG%202010%20Peer%20Review%20-%20Distributed%
+20Energy%20Communications%20and%20Controls%20-%20Thomas%
+20Rizy,%20ORNL.pdf
+[28] Y. Li, G. Hao, Y. Liu, Y. Yu, Z. Ni, and Y. Zhao, “Many-objective
+distribution network reconﬁguration via deep reinforcement learning
+assisted optimization algorithm,” IEEE Trans. Power Del., vol. 37, no. 3,
+pp. 2230–2244, Jun. 2022.
+[29] R. S. Sutton and A. G. Barto, Reinforcement Learning: An Introduction.
+Cambridge, MA, USA: MIT Press, 2018.
+[30] N. Li, L. Chen, and S. H. Low, “Optimal demand response based on
+utility maximization in power networks,” in Proc. IEEE Power Energy
+Soc. Gen. Meeting, Jul. 2011, pp. 1–8.
+[31] R. Mudumbai, S. Dasgupta, and B. B. Cho, “Distributed control for opti-
+mal economic dispatch of a network of heterogeneous power generators,”
+IEEE Trans. Power Syst., vol. 27, no. 4, pp. 1750–1760, Nov. 2012.
+[32] S. Nagendra, N. Podila, R. Ugarakhod, and K. George, “Comparison of
+reinforcement learning algorithms applied to the cart-pole problem,” in
+Proc. Int. Conf. Adv. Comput., Commun. Informat. (ICACCI), Sep. 2017,
+pp. 26–32.
+[33] V. Mnih et al., “Playing Atari with deep reinforcement learning,” 2013,
+arXiv:1312.5602.
+[34] S. Wang et al., “Adaptive federated learning in resource constrained
+edge computing systems,” IEEE J. Sel. Areas Commun., vol. 37, no. 6,
+pp. 1205–1221, Mar. 2019.
+[35] T. Logenthiran, D. Srinivasan, A. M. Khambadkone, and H. N. Aung,
+“Multiagent system for real-time operation of a microgrid in real-time
+digital simulator,” IEEE Trans. Smart Grid, vol. 3, no. 2, pp. 925–933,
+Jun. 2012.
+Authorized licensed use limited to: Donghua University. Downloaded on July 04,2026 at 06:46:03 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 13 ===
+5914
+IEEE TRANSACTIONS ON NEURAL NETWORKS AND LEARNING SYSTEMS, VOL. 35, NO. 5, MAY 2024
+[36] G. Liu, Y. Xu, and K. Tomsovic, “Bidding strategy for microgrid in
+day-ahead market based on hybrid stochastic/robust optimization,” IEEE
+Trans. Smart Grid, vol. 7, no. 1, pp. 227–237, Jan. 2016.
+[37] G. Liu, M. Starke, B. Xiao, X. Zhang, and K. Tonsovic, “Microgrid
+optimal scheduling with chance-constrained islanding capability,” Electr.
+Power Syst. Res., vol. 145, pp. 197–206, Apr. 2017.
+Yuanzheng Li (Member, IEEE) received the M.S.
+and Ph.D. degrees in electrical engineering from the
+Huazhong University of Science and Technology
+(HUST), Wuhan, China, and South China Univer-
+sity of Technology (SCUT), Guangzhou, China, in
+2011 and 2015, respectively.
+He is currently an Associate Professor at HUST.
+He has published several peer-reviewed papers in
+international journals. His current research interests
+include electric vehicle, deep learning, reinforce-
+ment learning, smart grid, optimal power sys-
+tem/MG scheduling and decision-making, stochastic optimization considering
+large-scale integration of renewable energy into the power systems, and
+multiobjective optimization.
+Shangyang He received the B.S. degree in automa-
+tion from the Wuhan University of Technology,
+Wuhan, China, in 2020. He is currently pursuing
+the M.S. degree with the Huazhong University of
+Science and Technology (HUST), Wuhan.
+His research interests include electric vehicle
+charging power forecast, deep learning, deep rein-
+forcement learning, and graph neural networks.
+Yang Li (Senior Member, IEEE) received the Ph.D.
+degree in electrical engineering from North China
+Electric Power University, Beijing, China, in 2014.
+He is an Associate Professor with the School
+of Electrical Engineering, Northeast Electric Power
+University,
+Jilin,
+China.
+He
+is
+also
+a
+China
+Scholarship Council-Funded Post-Doctoral with the
+Argonne National Laboratory, Lemont, IL, USA. His
+research interests include power system stability and
+control, integrated energy systems, renewable energy
+integration, and smart grids.
+Yang Shi (Fellow, IEEE) received the Ph.D. degree
+in electrical and computer engineering from the Uni-
+versity of Alberta, Edmonton, AB, Canada, in 2005.
+From 2005 to 2009, he was a Faculty Member
+with the Department of Mechanical Engineering,
+University of Saskatchewan, Saskatoon, SK, Canada.
+He is currently a Professor with the Department
+of Mechanical Engineering, University of Victoria,
+Victoria, BC, Canada. His current research interests
+include networked and distributed systems, model
+predictive control, industrial cyber-physical systems,
+mechatronics, and energy systems.
+Dr. Shi is a fellow of the Canadian Society for Mechanical Engineering
+(CSME) and the American Society of Mechanical Engineers (ASME) and a
+Registered Professional Engineer at British Columbia, Canada. He received
+the University of Saskatchewan Student Union Teaching Excellence Award
+in 2007 and the Faculty of Engineering Teaching Excellence Award at the
+University of Victoria in 2012. He received the JSPS Invitation Fellowship
+(short term) in 2013 and the 2015 Craigdarroch Silver Medal for Excellence
+in Research at the University of Victoria. Currently, he is a Coeditor-in-
+Chief of the IEEE TRANSACTIONS ON INDUSTRIAL ELECTRONICS; he also
+serves as an Associate Editor for Automatica, the IEEE TRANSACTIONS ON
+CONTROL SYSTEMS TECHNOLOGY, the IEEE/ASME TRANSACTIONS ON
+MECHATRONICS, and the ASME Journal of Dynamic Systems, Measurement,
+and Control.
+Zhigang Zeng (Fellow, IEEE) received the Ph.D.
+degree in systems analysis and integration from the
+Huazhong University of Science and Technology,
+Wuhan, China, in 2003.
+He is currently a Professor with the School
+of Automation and the Key Laboratory of Image
+Processing and Intelligent Control of the Educa-
+tion Ministry of China, Huazhong University of
+Science and Technology. He has published more
+than 100 international journal articles. His current
+research interests include theory of functional differ-
+ential equations and differential equations with discontinuous right-hand sides
+and their applications to dynamics of neural networks, memristive systems,
+and control systems.
+Dr. Zeng is a member of the Editorial Board of Neural Networks, since
+2012, Cognitive Computation, since 2010, and Applied Soft Computing, since
+2013. He was an Associate Editor of the IEEE TRANSACTIONS ON NEURAL
+NETWORKS AND LEARNING SYSTEMS, from 2010 to 2011. He has been
+an Associate Editor of the IEEE TRANSACTIONS ON CYBERNETICS, since
+2014 and the IEEE TRANSACTIONS ON FUZZY SYSTEMS, since 2016.
+Authorized licensed use limited to: Donghua University. Downloaded on July 04,2026 at 06:46:03 UTC from IEEE Xplore.  Restrictions apply. 

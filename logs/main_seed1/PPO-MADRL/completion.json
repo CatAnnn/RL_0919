@@ -1,0 +1,11 @@
+{
+  "run_id": "main_seed1",
+  "seed": 1,
+  "algorithm": "PPO-MADRL",
+  "iterations": 1500,
+  "agent_transitions": 108000,
+  "actor_updates": 18000,
+  "critic_updates": 18000,
+  "elapsed_this_invocation_seconds": 58.58666950001498,
+  "finished_utc": "2026-09-20T15:49:00.668019+00:00"
+}

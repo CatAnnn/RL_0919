@@ -1,0 +1,132 @@
+{
+  "fig05": {
+    "run_id": "main_seed0",
+    "seed": 0,
+    "config_hash": "d1c1eb972d85b5605cb5db7c2c6bc30520ef1b725ec02f3d139c77d64d6a78a6",
+    "data": {
+      "data\\day_ahead_profiles.csv": "aa2f2ac5f1294c5e48f8c027dcdecffc18eb834d51b0c0f89175358be26bd6a0",
+      "data\\mg_parameters.csv": "89afe3032125d45ad348f151cdbea1d853303949e88558a841c7e6af821eb4ca"
+    },
+    "checkpoint": "online training episodes; FedAvg after 500 and 1000",
+    "inputs": {
+      "logs\\main_seed0\\F-MADRL\\history.csv": "c26e3e305e9a4a389652dbd8c76e0a289b133d059be107b8040a71aaabfbe935"
+    },
+    "interpretation": "Assumption-labeled reconstruction; not certified paper reproduction"
+  },
+  "fig06": {
+    "run_id": "main_seed0",
+    "seed": 0,
+    "config_hash": "d1c1eb972d85b5605cb5db7c2c6bc30520ef1b725ec02f3d139c77d64d6a78a6",
+    "data": {
+      "data\\day_ahead_profiles.csv": "aa2f2ac5f1294c5e48f8c027dcdecffc18eb834d51b0c0f89175358be26bd6a0",
+      "data\\mg_parameters.csv": "89afe3032125d45ad348f151cdbea1d853303949e88558a841c7e6af821eb4ca"
+    },
+    "checkpoint": {
+      "iteration": 1500,
+      "path": "checkpoints\\main_seed0\\F-MADRL\\iter_1500_pre_fed.pt",
+      "sha256": "bb696f8795a17dbaaa830eedc9bcb9df219d4f7e88383a327b045b313522c112"
+    },
+    "inputs": {
+      "logs\\main_seed0\\evaluation\\schedule.csv": "c315f929f2cbbe25f0b65ea63fb9dc56c3ead6a9bacd3c050d015d2cab37491e"
+    },
+    "interpretation": "Assumption-labeled reconstruction; not certified paper reproduction"
+  },
+  "fig07": {
+    "run_id": "main_seed0",
+    "seed": 0,
+    "config_hash": "d1c1eb972d85b5605cb5db7c2c6bc30520ef1b725ec02f3d139c77d64d6a78a6",
+    "data": {
+      "data\\day_ahead_profiles.csv": "aa2f2ac5f1294c5e48f8c027dcdecffc18eb834d51b0c0f89175358be26bd6a0",
+      "data\\mg_parameters.csv": "89afe3032125d45ad348f151cdbea1d853303949e88558a841c7e6af821eb4ca"
+    },
+    "checkpoint": {
+      "iteration": 1500,
+      "path": "checkpoints\\main_seed0\\F-MADRL\\iter_1500_pre_fed.pt",
+      "sha256": "bb696f8795a17dbaaa830eedc9bcb9df219d4f7e88383a327b045b313522c112"
+    },
+    "inputs": {
+      "logs\\main_seed0\\evaluation\\schedule.csv": "c315f929f2cbbe25f0b65ea63fb9dc56c3ead6a9bacd3c050d015d2cab37491e"
+    },
+    "interpretation": "Assumption-labeled reconstruction; not certified paper reproduction"
+  },
+  "fig08": {
+    "run_id": "main_seed0",
+    "seed": 0,
+    "config_hash": "d1c1eb972d85b5605cb5db7c2c6bc30520ef1b725ec02f3d139c77d64d6a78a6",
+    "data": {
+      "data\\day_ahead_profiles.csv": "aa2f2ac5f1294c5e48f8c027dcdecffc18eb834d51b0c0f89175358be26bd6a0",
+      "data\\mg_parameters.csv": "89afe3032125d45ad348f151cdbea1d853303949e88558a841c7e6af821eb4ca"
+    },
+    "checkpoint": {
+      "iteration": 1500,
+      "path": "checkpoints\\main_seed0\\F-MADRL\\iter_1500_pre_fed.pt",
+      "sha256": "bb696f8795a17dbaaa830eedc9bcb9df219d4f7e88383a327b045b313522c112"
+    },
+    "inputs": {
+      "logs\\main_seed0\\evaluation\\schedule.csv": "c315f929f2cbbe25f0b65ea63fb9dc56c3ead6a9bacd3c050d015d2cab37491e"
+    },
+    "interpretation": "Assumption-labeled reconstruction; not certified paper reproduction"
+  },
+  "fig09": {
+    "run_id": "main_seed0",
+    "seed": 0,
+    "config_hash": "d1c1eb972d85b5605cb5db7c2c6bc30520ef1b725ec02f3d139c77d64d6a78a6",
+    "data": {
+      "data\\day_ahead_profiles.csv": "aa2f2ac5f1294c5e48f8c027dcdecffc18eb834d51b0c0f89175358be26bd6a0",
+      "data\\mg_parameters.csv": "89afe3032125d45ad348f151cdbea1d853303949e88558a841c7e6af821eb4ca"
+    },
+    "checkpoint": [
+      {
+        "iteration": 1,
+        "path": "checkpoints\\main_seed0\\F-MADRL\\iter_0001_pre_fed.pt",
+        "sha256": "b50d8b4c469618b9cc596d7123720a980493cd5671095c7cfd07b5906b33368d"
+      },
+      {
+        "iteration": 50,
+        "path": "checkpoints\\main_seed0\\F-MADRL\\iter_0050_pre_fed.pt",
+        "sha256": "0d0d1752132dd3799503b9afe62f99136eec2fea36b0f21cbad82bb8461a3cc9"
+      },
+      {
+        "iteration": 500,
+        "path": "checkpoints\\main_seed0\\F-MADRL\\iter_0500_pre_fed.pt",
+        "sha256": "5f7cc668b98b7406874c30c70d61763542bb81c373536d03a139f27ac92e5714"
+      },
+      {
+        "iteration": 700,
+        "path": "checkpoints\\main_seed0\\F-MADRL\\iter_0700_pre_fed.pt",
+        "sha256": "478be094cba6046054f53a601f709108e89785f181c98cec1b37ce562569f13a"
+      },
+      {
+        "iteration": 900,
+        "path": "checkpoints\\main_seed0\\F-MADRL\\iter_0900_pre_fed.pt",
+        "sha256": "34a8644429e671bd65668fc81e95709ba47431a6af12320e529333ad9deb2095"
+      },
+      {
+        "iteration": 1400,
+        "path": "checkpoints\\main_seed0\\F-MADRL\\iter_1400_pre_fed.pt",
+        "sha256": "3975aa4222847912069fe92a7204694b75ddf556e0c1e7f3cbb465ee08b4aaa6"
+      }
+    ],
+    "inputs": {
+      "logs\\main_seed0\\evaluation\\checkpoint_metrics.csv": "3bb75088f7f1245db022f6a5ecd0168b40f1753695ffb1b6f0e42d63c6bf6615"
+    },
+    "interpretation": "Assumption-labeled reconstruction; not certified paper reproduction"
+  },
+  "fig10": {
+    "run_id": "main_seed0",
+    "seed": 0,
+    "config_hash": "d1c1eb972d85b5605cb5db7c2c6bc30520ef1b725ec02f3d139c77d64d6a78a6",
+    "data": {
+      "data\\day_ahead_profiles.csv": "aa2f2ac5f1294c5e48f8c027dcdecffc18eb834d51b0c0f89175358be26bd6a0",
+      "data\\mg_parameters.csv": "89afe3032125d45ad348f151cdbea1d853303949e88558a841c7e6af821eb4ca"
+    },
+    "checkpoint": "online training episodes, all algorithms 1500 iterations",
+    "inputs": {
+      "logs\\main_seed0\\F-MADRL\\history.csv": "c26e3e305e9a4a389652dbd8c76e0a289b133d059be107b8040a71aaabfbe935",
+      "logs\\main_seed0\\PPO-MADRL\\history.csv": "68dfc4b6e474dbeb18fa1a3dcc48826bc169caed5ec16ac99dfbc5b145b80477",
+      "logs\\main_seed0\\A2C-MADRL\\history.csv": "f5306939befb5db28802ec40d6768dd58621b5457e807cb87a3f3b151be589bc",
+      "logs\\main_seed0\\TRPO-MADRL\\history.csv": "0f953833e3da5f36ddc2c9c061c9118a729ac2c82f44ee54ef3f7c482899161d"
+    },
+    "interpretation": "Assumption-labeled reconstruction; not certified paper reproduction"
+  }
+}

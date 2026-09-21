@@ -1,0 +1,11 @@
+{
+  "run_id": "smoke_seed0",
+  "seed": 0,
+  "algorithm": "PPO-MADRL",
+  "iterations": 8,
+  "agent_transitions": 576,
+  "actor_updates": 96,
+  "critic_updates": 96,
+  "elapsed_this_invocation_seconds": 0.33925530000124127,
+  "finished_utc": "2026-09-20T15:45:58.919454+00:00"
+}

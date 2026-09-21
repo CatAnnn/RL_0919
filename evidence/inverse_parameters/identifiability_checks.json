@@ -1,0 +1,51 @@
+{
+  "critic": {
+    "target": 10.0,
+    "initial_value": 0.0,
+    "learning_rate": 0.001,
+    "loss_before": 100.0,
+    "loss_after_descent": 99.60040000000001,
+    "loss_after_ascent": 100.40039999999999,
+    "gradient": -20.0,
+    "scope": "单参数固定目标平方误差；不推断作者实现"
+  },
+  "network": {
+    "original_hidden_width": 8,
+    "equivalent_hidden_width": 9,
+    "sample_count": 100,
+    "maximum_output_difference": 8.881784197001252e-16,
+    "meaning": "不同网络宽度可产生相同策略输出"
+  },
+  "ppo_clip_first_step_gradients": [
+    {
+      "clip": 0.1,
+      "gradient": [
+        -0.6666666865348816,
+        0.1666666716337204,
+        0.5
+      ]
+    },
+    {
+      "clip": 0.2,
+      "gradient": [
+        -0.6666666865348816,
+        0.1666666716337204,
+        0.5
+      ]
+    },
+    {
+      "clip": 0.3,
+      "gradient": [
+        -0.6666666865348816,
+        0.1666666716337204,
+        0.5
+      ]
+    }
+  ],
+  "soc": {
+    "eta": 0.95,
+    "physical_roundtrip_ratio": 0.9025,
+    "wrong_reversed_branch_roundtrip_ratio": 1.10803324099723,
+    "unit_efficiency_branches_indistinguishable": true
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "python": "3.10.19 | packaged by conda-forge | (main, Oct 22 2025, 22:23:22) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "F:\\Blackma\\Anaconda\\envs\\pytorch_env\\python.exe",
+  "platform": "Windows-10-10.0.22621-SP0",
+  "torch": "2.4.1",
+  "numpy": "2.2.6",
+  "pandas": "2.3.3",
+  "matplotlib": "3.10.8",
+  "PyYAML": "6.0.3",
+  "PyMuPDF": "1.27.1",
+  "cuda_available": true,
+  "training_device": "cpu"
+}

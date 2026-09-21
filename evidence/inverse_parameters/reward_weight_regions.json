@@ -1,0 +1,701 @@
+[
+  {
+    "phases": [
+      900
+    ],
+    "reward_protocol_tolerance": 0,
+    "feasible": true,
+    "constraints": [
+      {
+        "iteration": 900,
+        "mg": 1,
+        "reward_magnitude": 15059.85,
+        "total_cost": 60411.36919315404,
+        "abs_deficit": 3104.10094637224,
+        "minimum_price_weighted_deficit": 24738.217665615142,
+        "maximum_price_weighted_deficit": 86264.66088328077
+      },
+      {
+        "iteration": 900,
+        "mg": 2,
+        "reward_magnitude": 3524.99,
+        "total_cost": 51503.667481662604,
+        "abs_deficit": 619.8738170347006,
+        "minimum_price_weighted_deficit": 4615.977917981074,
+        "maximum_price_weighted_deficit": 18321.04889589906
+      },
+      {
+        "iteration": 900,
+        "mg": 3,
+        "reward_magnitude": 6164.79,
+        "total_cost": 31837.40831295844,
+        "abs_deficit": 548.8958990536275,
+        "minimum_price_weighted_deficit": 4041.056782334383,
+        "maximum_price_weighted_deficit": 16379.802839116714
+      }
+    ],
+    "vertices": [
+      [
+        0.0,
+        0.3763653361
+      ],
+      [
+        0.0433383076,
+        0.2894828677
+      ],
+      [
+        0.0181371204,
+        0.565210438
+      ],
+      [
+        0.0,
+        0.6087685946
+      ]
+    ],
+    "w_cost_range": [
+      0.0,
+      0.0433383076
+    ],
+    "w_deviation_range": [
+      0.2894828677,
+      0.6087685946
+    ],
+    "equal_half_feasible": false,
+    "centroid_candidate_not_author_parameters": [
+      0.015368857,
+      0.45995680910000003
+    ]
+  },
+  {
+    "phases": [
+      900
+    ],
+    "reward_protocol_tolerance": 0.05,
+    "feasible": true,
+    "constraints": [
+      {
+        "iteration": 900,
+        "mg": 1,
+        "reward_magnitude": 15059.85,
+        "total_cost": 60411.36919315404,
+        "abs_deficit": 3104.10094637224,
+        "minimum_price_weighted_deficit": 24738.217665615142,
+        "maximum_price_weighted_deficit": 86264.66088328077
+      },
+      {
+        "iteration": 900,
+        "mg": 2,
+        "reward_magnitude": 3524.99,
+        "total_cost": 51503.667481662604,
+        "abs_deficit": 619.8738170347006,
+        "minimum_price_weighted_deficit": 4615.977917981074,
+        "maximum_price_weighted_deficit": 18321.04889589906
+      },
+      {
+        "iteration": 900,
+        "mg": 3,
+        "reward_magnitude": 6164.79,
+        "total_cost": 31837.40831295844,
+        "abs_deficit": 548.8958990536275,
+        "minimum_price_weighted_deficit": 4041.056782334383,
+        "maximum_price_weighted_deficit": 16379.802839116714
+      }
+    ],
+    "vertices": [
+      [
+        -0.0,
+        0.3575470692
+      ],
+      [
+        0.0497168668,
+        0.2578771849
+      ],
+      [
+        0.0190439764,
+        0.5934709599
+      ],
+      [
+        0.0,
+        0.6392070243
+      ]
+    ],
+    "w_cost_range": [
+      0.0,
+      0.0497168668
+    ],
+    "w_deviation_range": [
+      0.2578771849,
+      0.6392070243
+    ],
+    "equal_half_feasible": false,
+    "centroid_candidate_not_author_parameters": [
+      0.0171902108,
+      0.462025559575
+    ]
+  },
+  {
+    "phases": [
+      900
+    ],
+    "reward_protocol_tolerance": 0.2,
+    "feasible": true,
+    "constraints": [
+      {
+        "iteration": 900,
+        "mg": 1,
+        "reward_magnitude": 15059.85,
+        "total_cost": 60411.36919315404,
+        "abs_deficit": 3104.10094637224,
+        "minimum_price_weighted_deficit": 24738.217665615142,
+        "maximum_price_weighted_deficit": 86264.66088328077
+      },
+      {
+        "iteration": 900,
+        "mg": 2,
+        "reward_magnitude": 3524.99,
+        "total_cost": 51503.667481662604,
+        "abs_deficit": 619.8738170347006,
+        "minimum_price_weighted_deficit": 4615.977917981074,
+        "maximum_price_weighted_deficit": 18321.04889589906
+      },
+      {
+        "iteration": 900,
+        "mg": 3,
+        "reward_magnitude": 6164.79,
+        "total_cost": 31837.40831295844,
+        "abs_deficit": 548.8958990536275,
+        "minimum_price_weighted_deficit": 4041.056782334383,
+        "maximum_price_weighted_deficit": 16379.802839116714
+      }
+    ],
+    "vertices": [
+      [
+        0.0,
+        0.3010922688
+      ],
+      [
+        0.0688525445,
+        0.1630601363
+      ],
+      [
+        0.0217645445,
+        0.6782525256
+      ],
+      [
+        -0.0,
+        0.7305223135
+      ]
+    ],
+    "w_cost_range": [
+      -0.0,
+      0.0688525445
+    ],
+    "w_deviation_range": [
+      0.1630601363,
+      0.7305223135
+    ],
+    "equal_half_feasible": false,
+    "centroid_candidate_not_author_parameters": [
+      0.02265427225,
+      0.46823181105
+    ]
+  },
+  {
+    "phases": [
+      1400
+    ],
+    "reward_protocol_tolerance": 0,
+    "feasible": true,
+    "constraints": [
+      {
+        "iteration": 1400,
+        "mg": 1,
+        "reward_magnitude": 15059.85,
+        "total_cost": 60289.11980440098,
+        "abs_deficit": 3061.514195583596,
+        "minimum_price_weighted_deficit": 24393.264984227128,
+        "maximum_price_weighted_deficit": 85099.91324921136
+      },
+      {
+        "iteration": 1400,
+        "mg": 2,
+        "reward_magnitude": 3415.94,
+        "total_cost": 29503.6674816626,
+        "abs_deficit": 506.3091482649843,
+        "minimum_price_weighted_deficit": 3696.1041009463725,
+        "maximum_price_weighted_deficit": 15215.055205047322
+      },
+      {
+        "iteration": 1400,
+        "mg": 3,
+        "reward_magnitude": 3743.82,
+        "total_cost": 48517.42053789731,
+        "abs_deficit": 406.9400630914824,
+        "minimum_price_weighted_deficit": 2891.2145110410074,
+        "maximum_price_weighted_deficit": 12497.310725552044
+      }
+    ],
+    "vertices": [
+      [
+        0.0,
+        0.2995700501
+      ],
+      [
+        0.0378166838,
+        0.1497310426
+      ],
+      [
+        0.0711381047,
+        0.1257328917
+      ],
+      [
+        0.0483783971,
+        0.4997911279
+      ],
+      [
+        0.0,
+        0.617377379
+      ]
+    ],
+    "w_cost_range": [
+      0.0,
+      0.0711381047
+    ],
+    "w_deviation_range": [
+      0.1257328917,
+      0.617377379
+    ],
+    "equal_half_feasible": false,
+    "centroid_candidate_not_author_parameters": [
+      0.031466637119999995,
+      0.33844049826
+    ]
+  },
+  {
+    "phases": [
+      1400
+    ],
+    "reward_protocol_tolerance": 0.05,
+    "feasible": true,
+    "constraints": [
+      {
+        "iteration": 1400,
+        "mg": 1,
+        "reward_magnitude": 15059.85,
+        "total_cost": 60289.11980440098,
+        "abs_deficit": 3061.514195583596,
+        "minimum_price_weighted_deficit": 24393.264984227128,
+        "maximum_price_weighted_deficit": 85099.91324921136
+      },
+      {
+        "iteration": 1400,
+        "mg": 2,
+        "reward_magnitude": 3415.94,
+        "total_cost": 29503.6674816626,
+        "abs_deficit": 506.3091482649843,
+        "minimum_price_weighted_deficit": 3696.1041009463725,
+        "maximum_price_weighted_deficit": 15215.055205047322
+      },
+      {
+        "iteration": 1400,
+        "mg": 3,
+        "reward_magnitude": 3743.82,
+        "total_cost": 48517.42053789731,
+        "abs_deficit": 406.9400630914824,
+        "minimum_price_weighted_deficit": 2891.2145110410074,
+        "maximum_price_weighted_deficit": 12497.310725552044
+      }
+    ],
+    "vertices": [
+      [
+        -0.0,
+        0.2845915476
+      ],
+      [
+        0.0359258496,
+        0.1422444905
+      ],
+      [
+        0.0758211172,
+        0.1135118426
+      ],
+      [
+        0.0507973169,
+        0.5247806843
+      ],
+      [
+        0.0,
+        0.6482462479
+      ]
+    ],
+    "w_cost_range": [
+      0.0,
+      0.0758211172
+    ],
+    "w_deviation_range": [
+      0.1135118426,
+      0.6482462479
+    ],
+    "equal_half_feasible": false,
+    "centroid_candidate_not_author_parameters": [
+      0.03250885674,
+      0.34267496257999996
+    ]
+  },
+  {
+    "phases": [
+      1400
+    ],
+    "reward_protocol_tolerance": 0.2,
+    "feasible": true,
+    "constraints": [
+      {
+        "iteration": 1400,
+        "mg": 1,
+        "reward_magnitude": 15059.85,
+        "total_cost": 60289.11980440098,
+        "abs_deficit": 3061.514195583596,
+        "minimum_price_weighted_deficit": 24393.264984227128,
+        "maximum_price_weighted_deficit": 85099.91324921136
+      },
+      {
+        "iteration": 1400,
+        "mg": 2,
+        "reward_magnitude": 3415.94,
+        "total_cost": 29503.6674816626,
+        "abs_deficit": 506.3091482649843,
+        "minimum_price_weighted_deficit": 3696.1041009463725,
+        "maximum_price_weighted_deficit": 15215.055205047322
+      },
+      {
+        "iteration": 1400,
+        "mg": 3,
+        "reward_magnitude": 3743.82,
+        "total_cost": 48517.42053789731,
+        "abs_deficit": 406.9400630914824,
+        "minimum_price_weighted_deficit": 2891.2145110410074,
+        "maximum_price_weighted_deficit": 12497.310725552044
+      }
+    ],
+    "vertices": [
+      [
+        -0.0,
+        0.2396560401
+      ],
+      [
+        0.030253347,
+        0.1197848341
+      ],
+      [
+        0.0898701547,
+        0.0768486955
+      ],
+      [
+        0.0580540765,
+        0.5997493535
+      ],
+      [
+        -0.0,
+        0.7408528547
+      ]
+    ],
+    "w_cost_range": [
+      -0.0,
+      0.0898701547
+    ],
+    "w_deviation_range": [
+      0.0768486955,
+      0.7408528547
+    ],
+    "equal_half_feasible": false,
+    "centroid_candidate_not_author_parameters": [
+      0.035635515640000004,
+      0.35537835557999997
+    ]
+  },
+  {
+    "phases": [
+      900,
+      1400
+    ],
+    "reward_protocol_tolerance": 0,
+    "feasible": true,
+    "constraints": [
+      {
+        "iteration": 900,
+        "mg": 1,
+        "reward_magnitude": 15059.85,
+        "total_cost": 60411.36919315404,
+        "abs_deficit": 3104.10094637224,
+        "minimum_price_weighted_deficit": 24738.217665615142,
+        "maximum_price_weighted_deficit": 86264.66088328077
+      },
+      {
+        "iteration": 900,
+        "mg": 2,
+        "reward_magnitude": 3524.99,
+        "total_cost": 51503.667481662604,
+        "abs_deficit": 619.8738170347006,
+        "minimum_price_weighted_deficit": 4615.977917981074,
+        "maximum_price_weighted_deficit": 18321.04889589906
+      },
+      {
+        "iteration": 900,
+        "mg": 3,
+        "reward_magnitude": 6164.79,
+        "total_cost": 31837.40831295844,
+        "abs_deficit": 548.8958990536275,
+        "minimum_price_weighted_deficit": 4041.056782334383,
+        "maximum_price_weighted_deficit": 16379.802839116714
+      },
+      {
+        "iteration": 1400,
+        "mg": 1,
+        "reward_magnitude": 15059.85,
+        "total_cost": 60289.11980440098,
+        "abs_deficit": 3061.514195583596,
+        "minimum_price_weighted_deficit": 24393.264984227128,
+        "maximum_price_weighted_deficit": 85099.91324921136
+      },
+      {
+        "iteration": 1400,
+        "mg": 2,
+        "reward_magnitude": 3415.94,
+        "total_cost": 29503.6674816626,
+        "abs_deficit": 506.3091482649843,
+        "minimum_price_weighted_deficit": 3696.1041009463725,
+        "maximum_price_weighted_deficit": 15215.055205047322
+      },
+      {
+        "iteration": 1400,
+        "mg": 3,
+        "reward_magnitude": 3743.82,
+        "total_cost": 48517.42053789731,
+        "abs_deficit": 406.9400630914824,
+        "minimum_price_weighted_deficit": 2891.2145110410074,
+        "maximum_price_weighted_deficit": 12497.310725552044
+      }
+    ],
+    "vertices": [
+      [
+        0.0,
+        0.3763653361
+      ],
+      [
+        0.0433383076,
+        0.2894828677
+      ],
+      [
+        0.0181371204,
+        0.565210438
+      ],
+      [
+        0.0,
+        0.6087685946
+      ]
+    ],
+    "w_cost_range": [
+      0.0,
+      0.0433383076
+    ],
+    "w_deviation_range": [
+      0.2894828677,
+      0.6087685946
+    ],
+    "equal_half_feasible": false,
+    "centroid_candidate_not_author_parameters": [
+      0.015368857,
+      0.45995680910000003
+    ]
+  },
+  {
+    "phases": [
+      900,
+      1400
+    ],
+    "reward_protocol_tolerance": 0.05,
+    "feasible": true,
+    "constraints": [
+      {
+        "iteration": 900,
+        "mg": 1,
+        "reward_magnitude": 15059.85,
+        "total_cost": 60411.36919315404,
+        "abs_deficit": 3104.10094637224,
+        "minimum_price_weighted_deficit": 24738.217665615142,
+        "maximum_price_weighted_deficit": 86264.66088328077
+      },
+      {
+        "iteration": 900,
+        "mg": 2,
+        "reward_magnitude": 3524.99,
+        "total_cost": 51503.667481662604,
+        "abs_deficit": 619.8738170347006,
+        "minimum_price_weighted_deficit": 4615.977917981074,
+        "maximum_price_weighted_deficit": 18321.04889589906
+      },
+      {
+        "iteration": 900,
+        "mg": 3,
+        "reward_magnitude": 6164.79,
+        "total_cost": 31837.40831295844,
+        "abs_deficit": 548.8958990536275,
+        "minimum_price_weighted_deficit": 4041.056782334383,
+        "maximum_price_weighted_deficit": 16379.802839116714
+      },
+      {
+        "iteration": 1400,
+        "mg": 1,
+        "reward_magnitude": 15059.85,
+        "total_cost": 60289.11980440098,
+        "abs_deficit": 3061.514195583596,
+        "minimum_price_weighted_deficit": 24393.264984227128,
+        "maximum_price_weighted_deficit": 85099.91324921136
+      },
+      {
+        "iteration": 1400,
+        "mg": 2,
+        "reward_magnitude": 3415.94,
+        "total_cost": 29503.6674816626,
+        "abs_deficit": 506.3091482649843,
+        "minimum_price_weighted_deficit": 3696.1041009463725,
+        "maximum_price_weighted_deficit": 15215.055205047322
+      },
+      {
+        "iteration": 1400,
+        "mg": 3,
+        "reward_magnitude": 3743.82,
+        "total_cost": 48517.42053789731,
+        "abs_deficit": 406.9400630914824,
+        "minimum_price_weighted_deficit": 2891.2145110410074,
+        "maximum_price_weighted_deficit": 12497.310725552044
+      }
+    ],
+    "vertices": [
+      [
+        -0.0,
+        0.3575470692
+      ],
+      [
+        0.0497168668,
+        0.2578771849
+      ],
+      [
+        0.0190439764,
+        0.5934709599
+      ],
+      [
+        0.0,
+        0.6392070243
+      ]
+    ],
+    "w_cost_range": [
+      0.0,
+      0.0497168668
+    ],
+    "w_deviation_range": [
+      0.2578771849,
+      0.6392070243
+    ],
+    "equal_half_feasible": false,
+    "centroid_candidate_not_author_parameters": [
+      0.0171902108,
+      0.462025559575
+    ]
+  },
+  {
+    "phases": [
+      900,
+      1400
+    ],
+    "reward_protocol_tolerance": 0.2,
+    "feasible": true,
+    "constraints": [
+      {
+        "iteration": 900,
+        "mg": 1,
+        "reward_magnitude": 15059.85,
+        "total_cost": 60411.36919315404,
+        "abs_deficit": 3104.10094637224,
+        "minimum_price_weighted_deficit": 24738.217665615142,
+        "maximum_price_weighted_deficit": 86264.66088328077
+      },
+      {
+        "iteration": 900,
+        "mg": 2,
+        "reward_magnitude": 3524.99,
+        "total_cost": 51503.667481662604,
+        "abs_deficit": 619.8738170347006,
+        "minimum_price_weighted_deficit": 4615.977917981074,
+        "maximum_price_weighted_deficit": 18321.04889589906
+      },
+      {
+        "iteration": 900,
+        "mg": 3,
+        "reward_magnitude": 6164.79,
+        "total_cost": 31837.40831295844,
+        "abs_deficit": 548.8958990536275,
+        "minimum_price_weighted_deficit": 4041.056782334383,
+        "maximum_price_weighted_deficit": 16379.802839116714
+      },
+      {
+        "iteration": 1400,
+        "mg": 1,
+        "reward_magnitude": 15059.85,
+        "total_cost": 60289.11980440098,
+        "abs_deficit": 3061.514195583596,
+        "minimum_price_weighted_deficit": 24393.264984227128,
+        "maximum_price_weighted_deficit": 85099.91324921136
+      },
+      {
+        "iteration": 1400,
+        "mg": 2,
+        "reward_magnitude": 3415.94,
+        "total_cost": 29503.6674816626,
+        "abs_deficit": 506.3091482649843,
+        "minimum_price_weighted_deficit": 3696.1041009463725,
+        "maximum_price_weighted_deficit": 15215.055205047322
+      },
+      {
+        "iteration": 1400,
+        "mg": 3,
+        "reward_magnitude": 3743.82,
+        "total_cost": 48517.42053789731,
+        "abs_deficit": 406.9400630914824,
+        "minimum_price_weighted_deficit": 2891.2145110410074,
+        "maximum_price_weighted_deficit": 12497.310725552044
+      }
+    ],
+    "vertices": [
+      [
+        0.0,
+        0.3010922688
+      ],
+      [
+        0.0688525445,
+        0.1630601363
+      ],
+      [
+        0.0217645445,
+        0.6782525256
+      ],
+      [
+        -0.0,
+        0.7305223135
+      ]
+    ],
+    "w_cost_range": [
+      -0.0,
+      0.0688525445
+    ],
+    "w_deviation_range": [
+      0.1630601363,
+      0.7305223135
+    ],
+    "equal_half_feasible": false,
+    "centroid_candidate_not_author_parameters": [
+      0.02265427225,
+      0.46823181105
+    ]
+  }
+]

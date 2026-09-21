@@ -1,0 +1,35 @@
+[
+  {
+    "iteration": 500,
+    "event": "fedavg",
+    "weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "actor_critic_log_std": true,
+    "optimizer_state": "retained"
+  },
+  {
+    "iteration": 1000,
+    "event": "fedavg",
+    "weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "actor_critic_log_std": true,
+    "optimizer_state": "retained"
+  },
+  {
+    "iteration": 1500,
+    "event": "fedavg",
+    "weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "actor_critic_log_std": true,
+    "optimizer_state": "retained"
+  }
+]

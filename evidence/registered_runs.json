@@ -1,0 +1,27 @@
+[
+  {
+    "seed": 0,
+    "exit_code": 0,
+    "log": "evidence\\full_seed0.log"
+  },
+  {
+    "seed": 1,
+    "exit_code": 0,
+    "log": "evidence\\full_seed1.log"
+  },
+  {
+    "seed": 2,
+    "exit_code": 0,
+    "log": "evidence\\full_seed2.log"
+  },
+  {
+    "seed": 3,
+    "exit_code": 0,
+    "log": "evidence\\full_seed3.log"
+  },
+  {
+    "seed": 4,
+    "exit_code": 0,
+    "log": "evidence\\full_seed4.log"
+  }
+]

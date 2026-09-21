@@ -1,0 +1,9 @@
+{
+  "capacity_bound_forward_replay_checks": 64,
+  "all_capacity_checks_passed": true,
+  "protected_existing_artifacts_checked": 503,
+  "protected_artifact_mismatches": [],
+  "reference_rows": 72,
+  "figure9_metric_rows": 54,
+  "scientific_parameter_recovery_unique": false
+}

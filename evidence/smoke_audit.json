@@ -1,0 +1,22 @@
+{
+  "checks": {
+    "F-MADRL_8_iterations": true,
+    "F-MADRL_finite_updates": true,
+    "F-MADRL_actor_changed": true,
+    "PPO-MADRL_8_iterations": true,
+    "PPO-MADRL_finite_updates": true,
+    "PPO-MADRL_actor_changed": true,
+    "A2C-MADRL_8_iterations": true,
+    "A2C-MADRL_finite_updates": true,
+    "A2C-MADRL_actor_changed": true,
+    "TRPO-MADRL_8_iterations": true,
+    "TRPO-MADRL_finite_updates": true,
+    "TRPO-MADRL_actor_changed": true,
+    "resume_history_exact": true,
+    "resume_parameters_exact": true,
+    "boundary_2_mean_exact": true,
+    "boundary_4_mean_exact": true,
+    "boundary_6_mean_exact": true
+  },
+  "passed": true
+}

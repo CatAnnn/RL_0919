@@ -1,0 +1,24 @@
+{
+  "executable": "F:\\Blackma\\Anaconda\\envs\\pytorch_env\\python.exe",
+  "torch": "2.4.1",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "analysis_type": "conditional_inverse_diagnostics_not_RL_training",
+  "training_executed": false,
+  "inputs": {
+    "scripts\\infer_missing_parameters.py": "65ee4050e98b0afe80fadf31f71aac9a5cd12eac6abeff1156609acb2a22e11b",
+    "scripts\\digitize_inverse.py": "dd34b9dab8f05647a01d91fde9940c4915d173ac7a4bea576b1cdf0b4e9a6964",
+    "reference_digitized\\inverse\\protocol.md": "d239ca0d0f021378efab0d75fba903d248b4292245fc8d22988287dccb1dbce7",
+    "reference_digitized\\inverse\\schedule_reference.csv": "910e67baf46ee88eb4d572d6d12ac9b06b2278a1ef6b3d9e1631addd3806786a",
+    "reference_digitized\\inverse\\fig09_reference.csv": "c54ae4d816d2bb1de9d33a7abb527a93022a516112c9ffa2a6275c04b9f33ff2",
+    "data\\mg_parameters.csv": "89afe3032125d45ad348f151cdbea1d853303949e88558a841c7e6af821eb4ca",
+    "data\\day_ahead_profiles.csv": "aa2f2ac5f1294c5e48f8c027dcdecffc18eb834d51b0c0f89175358be26bd6a0",
+    "Federated_Multiagent_Deep_Reinforcement_Learning_Approach_via_Physics-Informed_Reward_for_Multimicrogrid_Energy_Management.pdf": "67a2660811a272d0f19218b98b3511dcfc3ce54a6a0a7d1b339e48acb75f0610"
+  },
+  "checks": {
+    "critic_sign_checked": true,
+    "network_equivalence_checked": true,
+    "ppo_first_step_checked": true
+  },
+  "reward_joint_5pct_feasible": true
+}

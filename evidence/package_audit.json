@@ -1,0 +1,22 @@
+{
+  "source_archive_crc_passed": true,
+  "source_archive_hashes_match": true,
+  "source_file_count": 42,
+  "broken_links": [],
+  "original_input_current_hashes": {
+    "AGENTS.md": "7baafcc1af8818897a276775fa99e25b2c41388ca7b85a778c989b55d610a312",
+    "prompt.md": "4b1e99855eddb9060795b383f5df9e37a334c389067add3a7944fa404f352a6d",
+    "Federated_Multiagent_Deep_Reinforcement_Learning_Approach_via_Physics-Informed_Reward_for_Multimicrogrid_Energy_Management.pdf": "67a2660811a272d0f19218b98b3511dcfc3ce54a6a0a7d1b339e48acb75f0610",
+    "prompts\\reproduction\\01-paper-spec.md": "21fdac509c3912c3964d5ffa264b2e7985880e3212e9d9943b6b82248aea7653",
+    "prompts\\reproduction\\02-environment.md": "5e975bd1522378d2e145c6617a693d0d6c93649b1aa466fb8d2200a3d2f93258",
+    "prompts\\reproduction\\03-algorithms.md": "d2c23345b2fcbbeb13c030d896507d0e9d87a1ed39134df24392978446b8cec3",
+    "prompts\\reproduction\\04-fig05.md": "f7395f5f06e99e2dc5d9f1eeb540ade13962508e5c00b13efc7e82ff820320da",
+    "prompts\\reproduction\\05-fig06-08.md": "8f2e3f857c27bb7fc6a4f69ceb0689f8ff51f7a737d44c08d010c272c96f73e6",
+    "prompts\\reproduction\\06-fig09.md": "337e713adf4ee5542ed78b9c01d441fdf8bae5945c6813fe8bc33af569a5324e",
+    "prompts\\reproduction\\07-fig10.md": "17c68fb47a7aff9a58ec82cc1126cde3035d5566a374f3e0658e9129e0ec1221",
+    "prompts\\reproduction\\08-delivery.md": "7ea47194bd01af841e729d3f1e31fad970ab1a35902cfa0cd84ba85456312239",
+    "prompts\\reproduction\\README.md": "e54607cbfa60067fd4b3c1c3fc653727baaf7fb7cdcfe97540825f5e8e381dd6",
+    "prompts\\reproduction\\templates\\reproduction_state.md": "1c07118a583e93d8826b0126f8a1dd260dc7ec7fadfc6cb1022a806228914f28"
+  },
+  "original_inputs_edit_policy": "Original files were read only throughout this run; these are final hashes, not a separately captured pre-run baseline."
+}

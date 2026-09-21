@@ -1,0 +1,20 @@
+{
+  "strict_paper_reproduction": false,
+  "engineering_checks_passed": true,
+  "reason": "Author configuration and exact metric/episode protocol unavailable; observed numerical discrepancies remain.",
+  "diagnostic_thresholds_not_author_criteria": true,
+  "diagnostic_checks": {
+    "fig05_reference_points_within_5_percent": false,
+    "fig06_mg1_all_hours_deficit": true,
+    "fig06_mg1_cg_in_approximate_paper_range_with_5kw_margin": false,
+    "fig07_mg2_unbalanced_under_50kw": false,
+    "fig08_mg3_unbalanced_under_50kw": false,
+    "fig07_fig08_battery_near_zero_majority": true,
+    "fig09_mg1_final_unbalanced_approx3000_within10percent": false,
+    "fig09_mg2_mg3_final_under500": false,
+    "fig10_main_seed_f_wins_all_mgs": false
+  },
+  "training_win_count": 6,
+  "evaluation_win_count": 4,
+  "seed_mg_comparisons": 15
+}
